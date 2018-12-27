@@ -2555,6 +2555,48 @@ textarea:-ms-input-placeholder,
   background-size: 100%;
 }
 
+
+
+.public-toggle3 {
+  line-height: .38rem;
+  position: relative;
+  top: 0;
+  left: 0;
+  width: .38rem;
+  height: .38rem;
+  cursor: pointer;
+  text-align: center;
+  border: none;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.public-toggle3:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: .38rem;
+  height: .38rem;
+  content: '';
+  background: url('../assets/icon23.png') no-repeat center center;
+  -webkit-background-size: 100% 100%;
+  background-size: 100%;
+}
+
+.public-toggle3:checked:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: .38rem;
+  height: .38rem;
+  content: '';
+  background: url('../assets/icon22.png') no-repeat center center;
+  -webkit-background-size: 100% 100%;
+  background-size: 100%;
+}
+
 .no_more {
   font-size: .24rem;
   padding: .4rem .3rem;

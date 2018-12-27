@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>登陆</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <script src="./librarys/scripts/rem.js"></script>
+  <link rel="stylesheet" type="text/css" href="./librarys/styles/common.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./styles/public.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./styles/style.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./librarys/jqweui/lib/weui.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./librarys/jqweui/css/jquery-weui.css?v={:config('asset_version')}">
+</head>
+
+<body>
+  <div class="login-page" style="background-image: url(./assets/bg.jpg)" id="app">
+    <div class="content">
+      <h1 class="title">您好，<span>欢迎进入万花文化传媒</span></h1>
+      <div class="public-input-box-type01 public-bottom-line">
+        <input type="phone" name="" placeholder="请输入手机号" v-model="phone">
+        <img src="./assets/icon01.png" class="clear-input" alt="">
+      </div>
+      <div class="public-input-box-type01 public-bottom-line">
+        <input type="password" name="" placeholder="请输入密码" v-model="password">
+        <img src="./assets/icon01.png" class="clear-input" alt="">
+      </div>
+      <p style="padding-top: .3rem; color: #fff; font-size: .28rem;">还没有账号？<a style="color: #00aeff; " href="./register.html">立即注册</a></p>
+      <button :class="{'login-btn': true, active: allowLogin}">登陆</button>
+      <a href="./forget.html" class="forget">忘记密码</a>
+    </div>
+    <div class="remark">@COPYRIGHT 2018 万花文化传媒</div>
+  </div>
+  <script src="./librarys/scripts/vue.js?v={:config('asset_version')}"></script>
+  <script src="./librarys/jqweui/lib/jquery-2.1.4.js?v={:config('asset_version')}"></script>
+  <script src="./librarys/jqweui/js/jquery-weui.min.js?v={:config('asset_version')}"></script>
+  <script src="./scripts/public.js?v={:config('asset_version')}"></script>
+  <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js?v={:config('asset_version')}"></script>
+  <script type="text/javascript">
+    (function(){
+      var app = new Vue({
+        el: '#app',
+        data: {
+          phone: '',
+          password: ''
+        },
+        computed:{
+          allowLogin: function(){
+            return this.phone != '' && this.password != '';
+          }
+        }
+      })
+    })();
+  </script>
+</body>
+
+</html>

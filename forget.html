@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>忘记密码</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <script src="./librarys/scripts/rem.js"></script>
+  <link rel="stylesheet" type="text/css" href="./librarys/styles/common.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./styles/public.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./styles/style.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./librarys/jqweui/lib/weui.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./librarys/jqweui/css/jquery-weui.css?v={:config('asset_version')}">
+</head>
+
+<body>
+  <div class="forget-page public-wbg" id="app" v-cloak>
+
+    <!--==============================
+    =            stemp 01            =
+    ===============================-->
+
+    <div class="step01" v-if="step == 1">
+      <h1 class="title"><span>第一步</span>验证您的手机号</h1>
+      <div class="public-input-box-type-vercode public-bottom-line">
+        <div class="lside">
+          <input type="phone" name="" placeholder="请输入手机号" v-model="phone">
+          <img src="./assets/icon02.png" class="clear-input" alt="">
+        </div>
+        <a href="#" :class="{'get-vercode':true, gray:beginning}" @click="handleGetVercode">{{beginning ? '倒计时' + time + 's' : '获取验证码'}}</a>
+      </div>
+      <div class="public-input-box-type02 public-bottom-line">
+        <input type="number" name="" placeholder="请输入密码" v-model="vercode">
+        <img src="./assets/icon02.png" class="clear-input" alt="">
+      </div>
+      <button :class="{'public-btn-type01':true, gray: !allowNext}" @click="handleNextStep">下一步</button>
+    </div>
+
+    <!--====  End of stemp 01  ====-->
+
+
+
+    <!--=============================
+    =            step 02            =
+    ==============================-->
+
+    <div class="step01" v-if="step == 2">
+      <h1 class="title"><span>第二步</span>重置您的密码</h1>
+      <div class="public-input-box-type02 public-bottom-line">
+        <input type="password" name="" placeholder="请输入密码" v-model="password1">
+        <img src="./assets/icon02.png" class="clear-input" alt="">
+      </div>
+      <div class="public-input-box-type02 public-bottom-line">
+        <input type="password" name="" placeholder="请确认密码" v-model="password2">
+        <img src="./assets/icon02.png" class="clear-input" alt="">
+      </div>
+      <button :class="{'public-btn-type01':true, gray: !allowChange}" @click="handleConfirm">确认修改</button>
+    </div>
+
+    <!--====  End of step 02  ====-->
+
+  </div>
+  <script src="./librarys/scripts/vue.js?v={:config('asset_version')}"></script>
+  <script src="./librarys/jqweui/lib/jquery-2.1.4.js?v={:config('asset_version')}"></script>
+  <script src="./librarys/jqweui/js/jquery-weui.min.js?v={:config('asset_version')}"></script>
+  <script src="./scripts/public.js?v={:config('asset_version')}"></script>
+  <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js?v={:config('asset_version')}"></script>
+
+  <script src="./librarys/vee-validate/dist/vee-validate.min.js?v={:config('asset_version')}"></script>
+  <script src="./librarys/vee-validate/dist/locale/zh_CN.js?v={:config('asset_version')}"></script>
+  <script type="text/javascript">
+    (function() {
+      Vue.use(VeeValidate, {
+        locale: 'zh_CN',
+      });
+      $.toast.prototype.defaults.duration = 1000;
+      var app = new Vue({
+        el: '#app',
+        data: {
+          step: 1,
+          password1:'', //密码
+          password2:'', //确认密码
+          beginning: false, //是否正在获取验证码
+          time: 90, //获取验证码间隔时间
+          phone: '', //手机号
+          vercode: '', //验证码
+        },
+        computed: {
+          allowNext: function() {
+            return this.phone != '' && this.vercode != '';
+          },
+          allowChange: function(){
+            return this.password1 != '' && this.password2 != '';
+          }
+        },
+        methods: {
+          //获取验证码
+          handleGetVercode: function() {
+            var self = this;
+            if (this.beginning) return false;
+            if (!/^((13|14|15|17|18)[0-9]{1}\d{8})$/.test(this.phone)) {
+              $.toast('请输入正确的手机号', 'text');
+              return false;
+            }
+            $.showLoading();
+            $.post('#', { //发送获取验证码请求
+              phone: this.phone,
+            }, function(res) {
+              $.hideLoading();
+              if (res.code == 1) { //发送成功 开始倒计时
+                $.toast('验证码已发送至'+self.phone,'text');
+                self.beginning = true;
+                self.timer = setInterval(function() {
+                  let tempTime = self.time;
+                  if (tempTime == 0) {
+                    //倒计时结束
+                    clearInterval(self.timer);
+                    self.time = 90;
+                    self.beginning = false
+                    return;
+                  }
+                  self.time = tempTime - 1
+                }, 1000);
+              }else{
+                $.toast(res.info);
+              }
+            })
+          },
+          //点击下一步
+          handleNextStep: function() {
+            var self = this;
+            if(!this.vercode){
+              $.toast('请输入正确的验证码', 'text');
+              return false;
+            }
+            $.post('#',{
+              code: this.vercode,
+            },function(res){
+              if(res.code == 1){
+                self.step = 2;
+              }
+            })
+          },
+          //确认修改
+          handleConfirm:function(){
+            if(this.password1.length < 6){
+              $.toast('密码长度不能小于6位', 'text');
+              return false;
+            }
+            if(this.password1 != this.password2){
+              $.toast('两次输入密码不一样', 'text');
+              return false;
+            }
+            $.post('#',{
+              password: this.password1
+            },function(res){
+              $.toast(res.info, 'text');
+              if(res.code == 1){
+                setTimeout(function(){
+                  //修改密码成功 去登陆
+                  window.location.href = 'login.html';
+                },1000);
+              }
+            })
+          }
+        }
+      })
+    })();
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>申请开店</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <script src="./librarys/scripts/rem.js"></script>
+  <link rel="stylesheet" type="text/css" href="./librarys/styles/common.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./styles/public.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./styles/style.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./librarys/jqweui/lib/weui.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./librarys/jqweui/css/jquery-weui.css?v={:config('asset_version')}">
+</head>
+
+<body>
+  <div class="forget-page public-gbg modify-phone-page" id="app" v-cloak>
+
+    <div class="step01">
+      <div class="input-group">
+        <div class="public-input-box-type03 public-bottom-line public-flex-center" style="padding-right: 0;">
+          <label class="lside public-flex-center"><span class="name">推荐人ID</span><span class="require">*</span></label>
+          <input class="input public-flex1" type="text" name="" placeholder="请输入">
+        </div>
+      </div>
+      <div class="input-group">
+        <div class="public-input-box-type02 public-bottom-line">
+          <input type="text" name="" placeholder="请输入姓名" v-model="formData.realname">
+        </div>
+        <div class="public-input-box-type-vercode public-bottom-line">
+          <div class="lside">
+            <input type="phone" name="" placeholder="请输入手机号" v-model="formData.mobile">
+          </div>
+          <a href="#" :class="{'get-vercode':true, gray:beginning}" @click="handleGetVercode">{{beginning ? '倒计时' + time + 's' : '获取验证码'}}</a>
+        </div>
+        <div class="public-input-box-type02 public-bottom-line">
+          <input type="number" name="" placeholder="请输入验证码" v-model="formData.vercode">
+        </div>
+        <div class="public-input-box-type02 public-bottom-line">
+          <input type="password" name="" placeholder="请输入密码" v-model="formData.password1">
+        </div>
+        <div class="public-input-box-type02 public-bottom-line">
+          <input type="password" name="" placeholder="再次确认密码" v-model="formData.password2">
+        </div>
+      </div>
+      <div style="font-size: .24rem; color: #999; padding: .3rem;">
+        <input type="checkbox" class="public-toggle3" checked>
+        <span style="padding-left: .2rem; line-height: .38rem;">阅读并同意<a href="#" style="color: #00aeff;">《用户协议》</a></span>
+      </div>
+      <div class="btn-wapper">
+        <button :class="{'public-btn-type01':true, gray: !allowConfirm}" @click="handleConfirm">提交申请</button>
+      </div>
+    </div>
+
+
+
+  </div>
+  <script src="./librarys/scripts/vue.js?v={:config('asset_version')}"></script>
+  <script src="./librarys/jqweui/lib/jquery-2.1.4.js?v={:config('asset_version')}"></script>
+  <script src="./librarys/jqweui/js/jquery-weui.min.js?v={:config('asset_version')}"></script>
+  <script src="./scripts/public.js?v={:config('asset_version')}"></script>
+  <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js?v={:config('asset_version')}"></script>
+
+  <script type="text/javascript">
+    (function() {
+      $.toast.prototype.defaults.duration = 1200;
+      var app = new Vue({
+        el: '#app',
+        data: {
+          beginning: false, //是否正在获取验证码
+          time: 90, //获取验证码间隔时间
+          formData: {
+            realname: '', //真实姓名
+            mobile: '', //手机号
+            vercode: '', //验证码
+            password1: '',
+            password2: '',
+          }
+        },
+
+        computed: {
+          allowConfirm: function() {
+            var flag = true;
+            for(var item in this.formData){
+              if(this.formData[item] == '') flag = false;
+            }
+            return flag;
+          },
+        },
+
+        methods: {
+
+          //清除输入的内容
+          handleClearItem: function(key){
+            this.formData[key] = '';
+          },
+
+          //获取验证码
+          handleGetVercode: function() {
+            var self = this;
+            if (this.beginning) return false;
+            if (!/^((13|14|15|17|18)[0-9]{1}\d{8})$/.test(this.formData.mobile)) {
+              $.toast('请输入正确的手机号', 'text');
+              return false;
+            }
+            $.showLoading('发送中');
+            $.post('#', { //发送获取验证码请求
+              phone: this.formData.mobile,
+            }, function(res) {
+              $.hideLoading();
+              if (res.code == 1) { //发送成功 开始倒计时
+                $.toast('验证码已发送至' + self.formData.mobile, 'text');
+                self.beginning = true;
+                self.timer = setInterval(function() {
+                  let tempTime = self.time;
+                  if (tempTime == 0) {
+                    //倒计时结束
+                    clearInterval(self.timer);
+                    self.time = 90;
+                    self.beginning = false
+                    return;
+                  }
+                  self.time = tempTime - 1
+                }, 1000);
+              }else{
+                $.toast(res.msg,'text');
+              }
+            })
+          },
+
+          //确认提交申请
+          handleConfirm: function(){
+            var self = this;
+            if(!this.allowConfirm) return false;
+            $.showLoading('提交中');
+
+            var formData = this.formData;
+            $.post('{:url("")}', formData, function(res){
+              $.toast(res.msg, 'text');
+              if(res.code == 1){
+                setTimeout(function(){
+                  history.go(-1);
+                }, 1000);
+              }
+            })
+          }
+
+        }
+      })
+    })();
+
+  </script>
+</body>
+
+</html>
