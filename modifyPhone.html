@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>修改手机号</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <script src="./librarys/scripts/rem.js"></script>
+  <link rel="stylesheet" type="text/css" href="./librarys/styles/common.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./styles/public.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./styles/style.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./librarys/jqweui/lib/weui.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./librarys/jqweui/css/jquery-weui.css?v={:config('asset_version')}">
+</head>
+
+<body>
+  <div class="forget-page public-gbg modify-phone-page" id="app" v-cloak>
+
+    <!--==============================
+    =            stemp 01            =
+    ===============================-->
+
+    <div class="step01" v-if="step == 1">
+      <div class="input-group">
+        <div class="public-input-box-type-vercode public-bottom-line">
+          <div class="lside">
+            <input type="phone" name="" placeholder="旧手机号" v-model="phone">
+            <img src="./assets/icon02.png" class="clear-input" alt="">
+          </div>
+          <a href="#" :class="{'get-vercode':true, gray:beginning}" @click="handleGetVercode">{{beginning ? '倒计时' + time + 's' : '获取验证码'}}</a>
+        </div>
+        <div class="public-input-box-type02 public-bottom-line">
+          <input type="number" name="" placeholder="请输入密码" v-model="vercode">
+          <img src="./assets/icon02.png" class="clear-input" alt="">
+        </div>
+      </div>
+      <div class="btn-wapper">
+        <button :class="{'public-btn-type01':true, gray: !allowNext}" @click="handleNextStep">下一步</button>
+      </div>
+    </div>
+
+    <!--====  End of stemp 01  ====-->
+
+
+
+    <!--=============================
+    =            step 02            =
+    ==============================-->
+
+    <div class="step01" v-if="step == 2">
+      <div class="input-group">
+        <div class="public-input-box-type-vercode public-bottom-line">
+          <div class="lside">
+            <input type="phone" name="" placeholder="新手机号" v-model="phone">
+            <img src="./assets/icon02.png" class="clear-input" alt="">
+          </div>
+          <a href="#" :class="{'get-vercode':true, gray:beginning}" @click.stop.prevent="handleGetVercode">{{beginning ? '倒计时' + time + 's' : '获取验证码'}}</a>
+        </div>
+        <div class="public-input-box-type02 public-bottom-line">
+          <input type="number" name="" placeholder="请输入密码" v-model="vercode">
+          <img src="./assets/icon02.png" class="clear-input" alt="">
+        </div>
+      </div>
+      <div class="btn-wapper">
+        <button :class="{'public-btn-type01':true, gray: !allowNext}" @click="handleConfirmModify">确认修改</button>
+      </div>
+    </div>
+
+    <!--====  End of step 02  ====-->
+
+  </div>
+  <script src="./librarys/scripts/vue.js?v={:config('asset_version')}"></script>
+  <script src="./librarys/jqweui/lib/jquery-2.1.4.js?v={:config('asset_version')}"></script>
+  <script src="./librarys/jqweui/js/jquery-weui.min.js?v={:config('asset_version')}"></script>
+  <script src="./scripts/public.js?v={:config('asset_version')}"></script>
+  <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js?v={:config('asset_version')}"></script>
+
+  <script type="text/javascript">
+    (function() {
+      $.toast.prototype.defaults.duration = 1000;
+      var app = new Vue({
+        el: '#app',
+        data: {
+          step: 1,
+          beginning: false, //是否正在获取验证码
+          time: 90, //获取验证码间隔时间
+          phone: '', //手机号
+          vercode: '', //验证码
+        },
+        computed: {
+          allowNext: function() {
+            return this.phone != '' && this.vercode != '';
+          },
+        },
+        methods: {
+          //获取验证码
+          handleGetVercode: function() {
+            var self = this;
+            if (this.beginning) return false;
+            if (!/^((13|14|15|17|18)[0-9]{1}\d{8})$/.test(this.phone)) {
+              $.toast('请输入正确的手机号', 'text');
+              return false;
+            }
+            $.showLoading('发送中');
+            $.post('#', { //发送获取验证码请求
+              phone: this.phone,
+            }, function(res) {
+              $.hideLoading();
+              if (res.code == 1) { //发送成功 开始倒计时
+                $.toast('验证码已发送至'+self.phone,'text');
+                self.beginning = true;
+                self.timer = setInterval(function() {
+                  let tempTime = self.time;
+                  if (tempTime == 0) {
+                    //倒计时结束
+                    clearInterval(self.timer);
+                    self.time = 90;
+                    self.beginning = false
+                    return;
+                  }
+                  self.time = tempTime - 1
+                }, 1000);
+              }else{
+                $.toast(res.msg,'text');
+              }
+            })
+          },
+          //点击下一步
+          handleNextStep: function() {
+            var self = this;
+            if(!this.vercode){
+              $.toast('请输入正确的验证码', 'text');
+              return false;
+            }
+            $.showLoading('验证中');
+            $.post('#',{
+              code: this.vercode,
+            },function(res){
+              $.hideLoading();
+              if(res.code == 1){
+                $.toast('旧手机号验证通过，开始绑定新手机号','text');
+                self.step = 2;
+                self.beginning= false; //是否正在获取验证码
+                self.time= 90; //获取验证码间隔时间
+                self.phone= ''; //手机号
+                self.vercode= ''; //验证码
+              }else{
+                $.toast(res.msg,'text');
+              }
+            })
+          },
+          //确认修改手机号
+          handleConfirmModify: function(){
+            var self = this;
+            $.showLoading('修改中');
+            $.post('#',{
+              code: this.vercode,
+              phone: this.phone
+            },function(res){
+              $.toast(res.msg,'text');
+              if(res.code == 1){
+                setTimeout(function(){
+                  history.go(-1);
+                },1200);
+              }
+            })
+          }
+        }
+      })
+    })();
+
+  </script>
+</body>
+
+</html>

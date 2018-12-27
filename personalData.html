@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>个人资料</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <script src="./librarys/scripts/rem.js"></script>
+  <link rel="stylesheet" type="text/css" href="./librarys/styles/common.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./librarys/jqweui/lib/weui.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./librarys/jqweui/css/jquery-weui.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./styles/public.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./styles/style.css?v={:config('asset_version')}">
+</head>
+
+<body>
+  <div class="personal-data-page public-gbg">
+
+    <header class="header public-flex-center-center">
+      <div class="photo public-bgimg" style="background-image: url(./assets/d08.png)">
+        <img src="./assets/g15.png">
+      </div>
+    </header>
+
+    <div class="input-group">
+      <div class="public-input-box-type03 public-bottom-line public-flex-center">
+        <label class="lside public-flex-center"><span class="name">姓名</span></label>
+        <input class="input public-flex1" type="text" name="" placeholder="点击输入">
+      </div>
+      <div class="public-input-box-type03 public-bottom-line public-flex-center">
+        <label class="lside public-flex-center"><span class="name">手机号</span></label>
+        <input class="input public-flex1" type="phone" name="" placeholder="点击输入">
+      </div>
+      <div class="public-input-box-type03 public-flex-center">
+        <label class="lside public-flex-center"><span class="name">邮箱</span></label>
+        <input class="input public-flex1" type="email" name="" placeholder="点击输入">
+      </div>
+    </div>
+
+    <footer class="public-footer-btn-wapper">
+      <button class="public-btn-type02">保存</button>
+    </footer>
+
+
+  </div>
+  <script src="./librarys/scripts/vue.js?v={:config('asset_version')}"></script>
+  <script src="./librarys/jqweui/lib/jquery-2.1.4.js?v={:config('asset_version')}"></script>
+  <script src="./librarys/jqweui/js/jquery-weui.min.js?v={:config('asset_version')}"></script>
+  <script src="./scripts/public.js?v={:config('asset_version')}"></script>
+  <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js?v={:config('asset_version')}"></script>
+  <script type="text/javascript">
+    $(function(){
+      //选择所属部门
+      $("#js_select_department").picker({
+        title: "请选择所属部门",
+        cols: [
+          {
+            textAlign: 'center',
+            values: ['技术部','设计部','人事部','财务部']
+          }
+        ]
+      });
+
+      //选择所属岗位
+      $("#js_select_post").picker({
+        title: "请选择所属岗位",
+        cols: [
+          {
+            textAlign: 'center',
+            values: ['PHP','前端','设计','产品']
+          }
+        ]
+      });
+    })
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>客户列表</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <script src="./librarys/scripts/rem.js"></script>
+  <link rel="stylesheet" type="text/css" href="./librarys/styles/common.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./librarys/jqweui/lib/weui.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./librarys/jqweui/css/jquery-weui.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./styles/public.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./styles/style.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./styles/animate.css">
+</head>
+
+<body>
+  <div class="customer-list-page public-wbg">
+
+    <div class="public-toolbar-type01 public-bottom-line">
+      <a href="#" id="js_search">
+        <img src="./assets/search.png" style="width: .3rem; position: relative; top: .04rem">
+        <span>搜索</span>
+      </a>
+      <a href="#" class="sort-btn public-js-page-more-btn" data-mask="public-sort-mask" data-content="public-sort-content" data-change="true">
+        <span>全部</span>
+        <img src="./assets/more.png" style="width: .13rem;">
+      </a>
+    </div>
+
+    <!--==========================
+    =            list            =
+    ===========================-->
+
+    <div class="customer-list-list">
+      <a href="#" class="item public-flex-center">
+        <div class="lside public-flex-center-center public-bgimg" style="background-image: url(./assets/icon64@2x.png);">
+        </div>
+        <div class="center public-flex1 public-bottom-line">
+          <h2 class="public-flex-center">
+            <div class="public-flex1">刘星辰</div>
+            <span>ID： 5165498</span>
+          </h2>
+          <p>直接分享</p>
+          <div class="public-flex-center bottom">
+            <div class="public-flex1">注册时间 2018.10.09</div>
+            <div><span class="public-tags-blue">高级会员</span></div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!--====  End of list  ====-->
+
+    <!--==============================
+    =            排序弹窗            =
+    ===============================-->
+
+    <div class="public-sort-mask"></div>
+    <div class="public-sort-content" style="top: 1.76rem">
+      <div class="content-box">
+        <div class="public-choose-box-type01 public-flex-center public-bottom-line">
+          <span class="public-flex1">全部</span>
+          <input type="radio" name="sort" class="public-toggle1" checked name="">
+        </div>
+        <div class="public-choose-box-type01 public-flex-center public-bottom-line">
+          <span class="public-flex1">直接分享</span>
+          <input type="radio" name="sort" class="public-toggle1" name="">
+        </div>
+        <div class="public-choose-box-type01 public-flex-center public-bottom-line">
+          <span class="public-flex1">间接分享</span>
+          <input type="radio" name="sort" class="public-toggle1" name="">
+        </div>
+      </div>
+      <div class="footer-box">
+        <a class="line-btn btn reset">重置</a>
+        <a class="fill-btn btn confirm">确定</a>
+      </div>
+    </div>
+
+    <!--====  End of 排序弹窗  ====-->
+
+
+    </div>
+    <script src="./librarys/scripts/vue.js?v={:config('asset_version')}"></script>
+    <script src="./librarys/jqweui/lib/jquery-2.1.4.js?v={:config('asset_version')}"></script>
+    <script src="./librarys/jqweui/js/jquery-weui.min.js?v={:config('asset_version')}"></script>
+    <script src="./scripts/public.js?v={:config('asset_version')}"></script>
+    <script type="text/javascript">
+      $('#js_search').on('click', function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        $.modal({
+          title: '搜索团队成员',
+          text: '<div class="public-custom-modal-content"><input type="text" placeholder="请输入用户名或ID" /></div>',
+          autoClose: false,
+          buttons: [{
+            text: '取消',
+            onClick: function() {
+              $.closeModal();
+            }
+          }, {
+            text: '确定',
+            onClick: function() {
+              var searchKeyWord = $('.public-custom-modal-content input').val();
+              if (searchKeyWord != '' && searchKeyWord.trim() != '') {
+                $.showLoading('验证中');
+                $.post('#',{
+                  searchKeyWord: searchKeyWord,
+                },function(res){
+                  $.hideLoading();
+                  if(res.code == 1){
+                    $.toast('旧密码验证通过，开始设置新密码','text');
+                    setTimeout(function(){
+                      location.href = './modifyPassword.html';
+                    },1200);
+                  }else{
+                    $.toast(res.msg,'text');
+                  }
+                });
+              } else {
+                $.toast('搜索关键词不能为空','text');
+              }
+            }
+          }]
+        });
+      });
+    </script>
+</body>
+
+</html>

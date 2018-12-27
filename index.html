@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>首页</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <script src="./librarys/scripts/rem.js"></script>
+  <link rel="stylesheet" type="text/css" href="./librarys/styles/common.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./librarys/jqweui/lib/weui.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./librarys/jqweui/css/jquery-weui.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./styles/public.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./styles/style.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./librarys/swiper/css/swiper.min.css">
+</head>
+
+<body>
+  <div class="index-page public-wbg">
+
+    <!-- <div class="notice public-flex-center">
+      <img src="./assets/c01.png" class="lside" alt="">
+      <div class="center public-flex1">
+        <div class="swiper-container swiper-no-swiping">
+          <div class="swiper-wrapper">
+            <a href="#" class="swiper-slide">关于国庆放假的通知关于国庆放假的通知关于国庆放假的通知</a>
+            <a href="#" class="swiper-slide">2018中秋放假通知</a>
+            <a href="#" class="swiper-slide">2018春节放假通知</a>
+          </div>
+        </div>
+      </div>
+      <a href="#" class="rside">更多></a>
+    </div> -->
+
+    <div class="main">
+      <div class="user">
+        <div class="tx">
+          <div class="avatar public-bgimg img" style="background-image: url(./assets/d08.png)"></div>
+        </div>
+        <div class="name">
+          <div class="nick">卮言</div>
+          <div class="honor">
+            <div class="one"><img src="./assets/icon3.png">高级会员</div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="turns">
+        <div class="t1">您好，欢迎查看</div>
+        <div class="t2">
+          <span class="bold">万花文化传媒</span>
+        </div>
+        <div class="come">
+          <a href="./buyVIP.html" class="link">
+            <img src="./assets/vip.png">
+            <span>开通会员</span>
+          </a>
+          <a href="#" class="link">
+            <img src="./assets/icon2.png">
+            <span>发布任务</span>
+          </a>
+          <a href="#" class="link">
+            <img src="./assets/index07.png">
+            <span>发布记录</span>
+          </a>
+          <a href="./myQRCode.html" class="link">
+            <img src="./assets/index03.png">
+            <span>推广二维码</span>
+          </a>
+          <a href="./help.html" class="link">
+            <img src="./assets/index02.png">
+            <span>帮助中心</span>
+          </a>
+          <a href="#" class="link">
+            <img src="./assets/tixian.png">
+            <span>充值中心</span>
+          </a>
+          <div class="link">
+            <img src="./assets/shopicon07.png">
+            <span>商城购物</span>
+          </div>
+          <div class="link">
+            <img src="./assets/index08.png">
+            <span>金融理财</span>
+          </div>
+          <div class="link">
+            <img src="./assets/icon5.png">
+            <span>城市服务</span>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+
+
+    <!--============================
+        =            footer            =
+        =============================-->
+    <div style="height: .98rem"></div>
+    <div class="public-footer-nav">
+      <a class="item active" href="./index.html">
+        <!-- <img src="./assets/icon14.png"> -->
+        <img src="./assets/icon13.png">
+        <p>首页</p>
+      </a>
+      <a class="item" href="./work.html">
+        <img src="./assets/icon15.png">
+        <!-- <img src="./assets/icon16.png"> -->
+        <p>任务大厅</p>
+      </a>
+      <a class="item" href="./center.html">
+        <img src="./assets/icon19.png">
+        <!-- <img src="./assets/icon20.png"> -->
+        <p>个人中心</p>
+      </a>
+    </div>
+    <!--====  End of footer  ====-->
+
+
+
+  </div>
+  <script src="./librarys/scripts/vue.js?v={:config('asset_version')}"></script>
+  <script src="./librarys/jqweui/lib/jquery-2.1.4.js?v={:config('asset_version')}"></script>
+  <script src="./librarys/jqweui/js/jquery-weui.min.js?v={:config('asset_version')}"></script>
+  <script src="./scripts/public.js?v={:config('asset_version')}"></script>
+  <script src="./librarys/swiper/js/swiper.min.js"></script>
+  <script type="text/javascript">
+    var swiper = new Swiper('.swiper-container', {
+      direction: 'vertical',
+      autoplay: true,
+      loop: true
+    });
+
+    $(function(){
+      $('div.link').on('click',function(){
+        $.toast('敬请期待','text');
+      })
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>首页</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <script src="./librarys/scripts/rem.js"></script>
+  <link rel="stylesheet" type="text/css" href="./librarys/styles/common.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./librarys/jqweui/lib/weui.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./librarys/jqweui/css/jquery-weui.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./styles/public.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./styles/style.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./librarys/swiper/css/swiper.min.css">
+</head>
+
+<body>
+
+
+  <div class="public-gbg withdraw-page" id="app">
+    <!-- 佣金提现 -->
+    <div class="withdrawBox">
+      <div class="drawTip">温馨提示 最小提现金额为100元</div>
+      <div style="padding: .3rem;">
+        <div class="drawBox">
+          <div class="fillbox">
+            <h2>暂只支持 到账您的微信</h2>
+            <div class="fill">
+              <!--<h3><span>提现（费率0.1%）</span><i>手续费<em>¥</em>100</i></h3>-->
+              <div class="write public-bottom-line">
+                <h4>¥</h4>
+                <input type="tel" placeholder="" id="money" name="money">
+              </div>
+              <h5><span>可提现金额{available_money}元</span><i class="public-color-success">全部提现</i></h5>
+            </div>
+          </div>
+
+          <div class="input-group" style="padding-left: .3rem;">
+            <div class="public-input-box-type03 public-flex-center screen-btn public-bottom-line" @click="handleToggleWithdrawTarget">
+              <label class="lside public-flex-center"><span class="name">提现至</span></label>
+              <div class="public-flex1" style="text-align: right;">{{withdrawTarget}}</div>
+              <img class="icon" src="./assets/a04.png" alt="">
+            </div>
+
+            <div class="public-input-box-type03 public-bottom-line public-flex-center" v-if="withdrawTarget == '微信'">
+              <label class="lside public-flex-center"><span class="name">微信名称</span><span class="require">*</span></label>
+              <input class="input public-flex1" type="text" name="" placeholder="选填">
+            </div>
+            <div class="public-input-box-type03 public-bottom-line public-flex-center" v-if="withdrawTarget == '微信'">
+              <label class="lside public-flex-center"><span class="name">微信号</span><span class="require">*</span></label>
+              <input class="input public-flex1" type="text" name="" placeholder="选填">
+            </div>
+
+            <div class="public-input-box-type03 public-bottom-line public-flex-center" v-if="withdrawTarget == '支付宝'">
+              <label class="lside public-flex-center"><span class="name">支付宝名称</span><span class="require">*</span></label>
+              <input class="input public-flex1" type="text" name="" placeholder="选填">
+            </div>
+            <div class="public-input-box-type03 public-bottom-line public-flex-center" v-if="withdrawTarget == '支付宝'">
+              <label class="lside public-flex-center"><span class="name">支付宝号</span><span class="require">*</span></label>
+              <input class="input public-flex1" type="text" name="" placeholder="选填">
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="submit" style="padding: 0 .3rem .3rem;">
+        <button class="public-btn-type02">确认提现</button>
+      </div>
+    </div>
+    <!-- 佣金提现 -->
+  </div>
+
+
+  <script src="./librarys/scripts/vue.js?v={:config('asset_version')}"></script>
+  <script src="./librarys/jqweui/lib/jquery-2.1.4.js?v={:config('asset_version')}"></script>
+  <script src="./scripts/public.js?v={:config('asset_version')}"></script>
+  <script src="./librarys/jqweui/js/jquery-weui.min.js?v={:config('asset_version')}"></script>
+
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        withdrawTarget: '支付宝',
+      },
+      methods: {
+        handleToggleWithdrawTarget: function(){
+          var self = this;
+          $.actions({
+            actions: [{
+              text: "支付宝",
+              className: 'public-color-success',
+              onClick: function() {
+                self.withdrawTarget = '支付宝';
+              }
+            }, {
+              text: "微信",
+              className: 'public-color-success',
+              onClick: function() {
+                self.withdrawTarget = '微信';
+              }
+            }]
+          });
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

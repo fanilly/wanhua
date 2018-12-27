@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>我的财富</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <script src="./librarys/scripts/rem.js"></script>
+  <link rel="stylesheet" type="text/css" href="./librarys/styles/common.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./librarys/jqweui/lib/weui.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./librarys/jqweui/css/jquery-weui.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./styles/public.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./styles/xss.css?v={:config('asset_version')}">
+</head>
+
+<body>
+
+    <style>
+    body{ background-color: #f7f7f7; padding-top: 4.4rem; }
+    </style>
+
+    <div class="reward_page" id="app">
+        <div class="top_num"  :class="{'mainc':typeNum==2}">
+            <div class="box">
+                <div class="zuo"></div>
+                <div class="you"></div>
+                <h2>
+                    <span :class="{'on':typeNum==1}" @click='typeNum=1'>我的收入</span>
+                    <span :class="{'on':typeNum==2}" @click='typeNum=2'>我的支出</span>
+                    <i>单位（元）</i>
+                </h2>
+                <h3>¥<span>0.00</span></h3>
+                <h6>{{typeNum==1?'共完成12次任务,赚到861354元任务佣金':'主人，您已提现1915141元了'}}</h6>
+            </div>
+        </div>
+        <div class="tit">{{typeNum==1?'收入明细':'支出明细'}}</div>
+        <div class="rewardList">
+            <div class="item public-bottom-line orange" v-if='typeNum==1'>
+                <div class="left">
+                    <h4><span>任务完成</span></h4>
+                    <p>余额55113元</p>
+                    <p>2018-15-15 10:22</p>
+                </div>
+                <div class="right">0.01元</div>
+            </div>
+            <div class="item public-bottom-line orange" v-if='typeNum==1'>
+                <div class="left">
+                    <h4><span>任务完成</span></h4>
+                    <p>余额55113元</p>
+                    <p>2018-15-15 10:22</p>
+                </div>
+                <div class="right">0.01元</div>
+            </div>
+            <div class="item public-bottom-line mainc" v-if='typeNum==2'>
+                <div class="left">
+                    <h4><em>提现至微信</em><span>wx815969707</span></h4>
+                    <p>余额55113元</p>
+                    <p>2018-15-15 10:22</p>
+                </div>
+                <div class="right">0.01元</div>
+            </div>
+
+            <!-- 没有更多 -->
+            <!-- v-if='commentLoadedAll && !noCommentLists' -->
+            <div class="no_more">已加载全部内容~</div>
+             <!-- v-if='allowLoadMore && noCommentLists' -->
+            <!-- <div class="no_more"><img src="__STATIC__/client/assets/a06.png" alt="">暂无内容~</div>  -->
+             <!-- v-if='!commentLoadedAll && !noCommentLists' -->
+            <!-- <div class="weui-loadmore"><i class="weui-loading"></i><span class="weui-loadmore__tips">正在加载</span></div> -->
+            <!-- 没有更多 -->
+
+        </div>
+
+        <a href="./withdraw.html" class="public-suspension-menu animated" style="width: 1.48rem; height: 1.5rem; z-index: 40;">
+          <img class="control" src="./assets/icon53.png" style="width: 1.48rem; height: 1.5rem; box-shadow: none;">
+        </a>
+    </div>
+
+    <script src="./librarys/scripts/vue.js?v={:config('asset_version')}"></script>
+    <script src="./librarys/jqweui/lib/jquery-2.1.4.js?v={:config('asset_version')}"></script>
+    <script src="./librarys/jqweui/js/jquery-weui.min.js?v={:config('asset_version')}"></script>
+    <script src="./scripts/public.js?v={:config('asset_version')}"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js?v={:config('asset_version')}"></script>
+    <script type="text/javascript">
+    $(function() {
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                typeNum:1
+            },
+            methods: {
+
+            },
+            mounted: function () {
+
+            }
+        });
+    })
+    </script>
+</body>
+
+</html>

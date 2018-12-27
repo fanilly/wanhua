@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>安全设置</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <script src="./librarys/scripts/rem.js"></script>
+  <link rel="stylesheet" type="text/css" href="./librarys/styles/common.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./librarys/jqweui/lib/weui.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./librarys/jqweui/css/jquery-weui.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./styles/public.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./styles/style.css?v={:config('asset_version')}">
+</head>
+
+<body>
+  <div class="settings-page public-gbg" style="padding-top: .14rem">
+    <div class="public-list-type04">
+      <a class="item public-flex-center" id="js_modify_password">
+        <div class="rside public-bottom-line public-flex1 public-flex-center">
+          <div class="txt public-flex1 public-text-overflow">修改密码</div>
+          <img src="./assets/a04.png" alt="">
+        </div>
+      </a>
+      <a href="./modifyPhone.html" class="item public-flex-center">
+        <div class="rside public-bottom-line public-flex1 public-flex-center">
+          <div class="txt public-flex1 public-text-overflow">修改手机号</div>
+          <img src="./assets/a04.png" alt="">
+        </div>
+      </a>
+    </div>
+
+  </div>
+  <script src="./librarys/scripts/vue.js?v={:config('asset_version')}"></script>
+  <script src="./librarys/jqweui/lib/jquery-2.1.4.js?v={:config('asset_version')}"></script>
+  <script src="./librarys/jqweui/js/jquery-weui.min.js?v={:config('asset_version')}"></script>
+  <script src="./scripts/public.js?v={:config('asset_version')}"></script>
+  <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js?v={:config('asset_version')}"></script>
+  <script type="text/javascript">
+  $(function() {
+    $.toast.prototype.defaults.duration = 1000;
+    $('#js_modify_password').on('click', function(e) {
+      e.stopPropagation();
+      e.preventDefault();
+      $.modal({
+        title: '验证原密码',
+        text: '<h2 class="public-custom-modal-title">如果忘记原密码，请<a href="./forget.html">点击这里</a></h2><div class="public-custom-modal-content"><input type="password" placeholder="原密码" /></div>',
+        autoClose: false,
+        buttons: [{
+          text: '取消',
+          onClick: function() {
+            $.closeModal();
+          }
+        }, {
+          text: '确定',
+          onClick: function() {
+            var password = $('.public-custom-modal-content input').val();
+            if (password != '' && password.trim() != '') {
+              $.showLoading('验证中');
+              $.post('#',{
+                password: password,
+              },function(res){
+                $.hideLoading();
+                if(res.code == 1){
+                  $.toast('旧密码验证通过，开始设置新密码','text');
+                  setTimeout(function(){
+                    location.href = './modifyPassword.html';
+                  },1200);
+                }else{
+                  $.toast(res.msg,'text');
+                }
+              });
+            } else {
+              $.toast('原密码不能为空','text');
+            }
+          }
+        }]
+      });
+    });
+  });
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>我的</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <script src="./librarys/scripts/rem.js"></script>
+  <link rel="stylesheet" type="text/css" href="./librarys/styles/common.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./librarys/jqweui/lib/weui.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./librarys/jqweui/css/jquery-weui.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./styles/public.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./styles/style.css?v={:config('asset_version')}">
+</head>
+
+<body>
+    <div class="center-page public-gbg">
+
+        <!--============================
+        =            header            =
+        =============================-->
+        <a class="header public-flex-center" href="./personalData.html">
+            <div class="lside public-bgimg" style="background-image: url(./assets/d08.png)"></div>
+            <div class="center public-flex1">
+                <h2>卮言(ID:56135)</h2>
+                <p>我的上级: 51654251</p>
+                <div>
+                    <span class="public-tags-blue">高级会员</span>
+                </div>
+            </div>
+            <img src="./assets/a04.png" alt="" class="rside">
+        </a>
+        <!--====  End of header  ====-->
+
+        <a href="./myQRCode.html" class="code-wapper">
+            <img src="./assets/d07.png">
+        </a>
+        <div class="public-list-type04">
+            <a href="./reward.html" class="item public-flex-center">
+                <img src="./assets/c56.png" alt="" class="lside">
+                <div class="rside public-bottom-line public-flex1 public-flex-center">
+                    <div class="txt public-flex1">我的财富</div>
+                    <p style="color: #999; padding-right: .2rem; font-size: .28rem;">共赚到11899元</p>
+                    <img src="./assets/a04.png" alt="">
+                </div>
+            </a>
+            <a href="./teamList.html" class="item public-flex-center">
+                <img src="./assets/c80.png" alt="" class="lside">
+                <div class="rside public-bottom-line public-flex1 public-flex-center">
+                    <div class="txt public-flex1">我的团队</div>
+                    <p style="color: #999; padding-right: .2rem; font-size: .28rem;">推广人数120</p>
+                    <img src="./assets/a04.png" alt="">
+                </div>
+            </a>
+            <a id="js_clear_storage" class="item public-flex-center">
+                <img src="./assets/d09.png" alt="" class="lside">
+                <div class="rside public-bottom-line public-flex1 public-flex-center">
+                    <div class="txt public-flex1">清空缓存</div>
+                    <p style="color: #999; padding-right: .2rem; font-size: .28rem;">3.2M</p>
+                    <img src="./assets/a04.png" alt="">
+                </div>
+            </a>
+            <a href="./help.html" class="item public-flex-center">
+                <img src="./assets/d10.png" alt="" class="lside">
+                <div class="rside public-bottom-line public-flex1 public-flex-center">
+                    <div class="txt public-flex1">帮助中心</div>
+                    <img src="./assets/a04.png" alt="">
+                </div>
+            </a>
+            <a href="./about.html" class="item public-flex-center">
+                <img src="./assets/d11.png" alt="" class="lside">
+                <div class="rside public-bottom-line public-flex1 public-flex-center">
+                    <div class="txt public-flex1">关于我们</div>
+                    <img src="./assets/a04.png" alt="">
+                </div>
+            </a>
+            <a href="./settings.html" class="item public-flex-center">
+                <img src="./assets/g14.png" alt="" class="lside">
+                <div class="rside public-bottom-line public-flex1 public-flex-center">
+                    <div class="txt public-flex1">安全设置</div>
+                    <img src="./assets/a04.png" alt="">
+                </div>
+            </a>
+        </div>
+
+        <a href="#" class="login-out" id="js_login_out">退出登录</a>
+
+
+
+        <!--============================
+        =            footer            =
+        =============================-->
+        <div style="height: .98rem"></div>
+        <div class="public-footer-nav">
+            <a class="item" href="./index.html">
+                <img src="./assets/icon14.png">
+                <!-- <img src="./assets/icon13.png"> -->
+                <p>首页</p>
+            </a>
+            <a class="item" href="./work.html">
+                <img src="./assets/icon15.png">
+                <!-- <img src="./assets/icon16.png"> -->
+                <p>任务大厅</p>
+            </a>
+            <a class="item active" href="./center.html">
+                <!-- <img src="./assets/icon19.png"> -->
+                <img src="./assets/icon20.png">
+                <p>我的</p>
+            </a>
+        </div>
+        <!--====  End of footer  ====-->
+
+
+
+    </div>
+    <script src="./librarys/scripts/vue.js?v={:config('asset_version')}"></script>
+    <script src="./librarys/jqweui/lib/jquery-2.1.4.js?v={:config('asset_version')}"></script>
+    <script src="./librarys/jqweui/js/jquery-weui.min.js?v={:config('asset_version')}"></script>
+    <script src="./scripts/public.js?v={:config('asset_version')}"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js?v={:config('asset_version')}"></script>
+    <script type="text/javascript">
+    $(function() {
+        $('#js_clear_storage').on('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          $.confirm('您确认清空缓存吗？', function() {
+            $.showLoading('操作中');
+            $.post('#', function(res) {
+              $.hideLoading();
+              $.toast(res.msg, 'text');
+              if (res.code == 1) {
+                location.reload()
+              }
+            })
+          }, function() {
+
+          });
+        });
+
+        $('#js_login_out').on('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          $.modal({
+            title: "提示",
+            text: "您确认退出登录吗？",
+            buttons: [{
+              text: "继续退出",
+              className: "default",
+              onClick: function() {
+                $.post('#', function(res) {
+                  $.hideLoading();
+                  $.toast(res.msg, 'text');
+                  if (res.code == 1) {
+                    location.href = "./login.html"
+                  }
+                })
+              }
+            },{
+              text: "留下来"
+            }]
+          });
+        })
+    })
+
+    </script>
+</body>
+
+</html>

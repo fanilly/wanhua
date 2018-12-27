@@ -1,0 +1,227 @@
+.mj--datepicker-mask {
+  font-family: 'Microsoft YaHei', Arial;
+  position: fixed;
+  z-index: 99999;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: none;
+  margin: 0;
+  padding: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background: rgba(0, 0, 0, .5);
+}
+
+.mj--datepicker-mask div,
+.mj--datepicker-mask span,
+.mj--datepicker-mask h3,
+.mj--datepicker-mask a {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.mj--datepicker-mask .mj--datepicker-wapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  width: 6rem;
+  height: 9.4rem;
+  margin: auto;
+  padding: 0;
+  background-color: #fff;
+}
+
+.mj--datepicker-mask .mj--datepicker-header {
+  position: relative;
+  z-index: 99;
+  height: 1.5rem;
+  padding: .2rem .5rem;
+}
+
+.mj--datepicker-mask .mj--datepicker-header .mj--datepicker-title {
+  font-size: .28rem;
+  font-weight: normal;
+}
+
+.mj--datepicker-mask .mj--datepicker-header .mj--datepicker-title span {
+  font-size: .5rem;
+  display: block;
+}
+
+.mj--datepicker-mask .mj--datepicker-control {
+  font-size: .3rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0 .14rem;
+  text-align: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.mj--datepicker-mask .mj--datepicker-control .mj--datepicker-control-btn {
+  line-height: 1rem;
+  position: relative;
+  width: 1rem;
+  height: 1rem;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+
+.mj--datepicker-mask .mj--datepicker-control .mj--datepicker-prev .mj-datepicker-arrow {
+  -webkit-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+.mj--datepicker-mask .mj--datepicker-control .mj--datepicker-show {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+.mj--datepicker-mask .mj--datepicker-control .mj--datepicker-next .mj-datepicker-arrow {
+  -webkit-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+}
+
+.mj--datepicker-mask .ripple {
+  position: absolute;
+  width: 0;
+  height: 0;
+  -webkit-transform: scale(0);
+  -ms-transform: scale(0);
+  transform: scale(0);
+  opacity: 1;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  background: #ccc;
+}
+
+.mj--datepicker-mask .rippleEffect {
+  -webkit-animation: rippleDrop .4s linear;
+  animation: rippleDrop .4s linear;
+}
+
+@-webkit-keyframes rippleDrop {
+  100% {
+    -webkit-transform: scale(1.4);
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
+
+@keyframes rippleDrop {
+  100% {
+    -webkit-transform: scale(1.4);
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
+
+.mj--datepicker-mask .mj-datepicker-arrow {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: .3rem;
+  height: .3rem;
+  margin: auto;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAF50lEQVR4Xu2dT4scZRDGq3pWoiKeFibTM9MDghfBD+BJPYnn6FVEiF42uxKzevPPQQQTTTbJxYggXhM/gCf15AcQvAjC9Ng9DOxJRBMcp6SdHXazbDbdU9UzXW9Vrnnrnaee5zf1dr8bsgj+x7QDaLp7bx4cAOMQOAAOgHEHjLfvE8ABMO6A8fZ9AjgAxh0w3r5PAAfAuAPG2/cJ4AAYd8B4+z4BHADjDhhv3yeAA2DcAePt+wRwAIw7YLx9nwAOgHEHjLfvE8ABMO6A8fZ9AjgAxh0w3r5PAAfAuAPG2/cJ4AAYd8B4+z4BHADjDhhv3yeAA2DcAePt+wRwAIw7YLx9nwAOQC0ORO12/xkA/GsySX+r5ROMbNpuJ08B0OOTyegXAJhJty06Adrt3rMbG61rAPQcAD5WiCWCPxDpu3v3cGd/fziWbiDE/TY3B50zZ2iPCF9ChCfnPdLfAPjTdPrv25PJ7z9L9S0GQBwn7wLAx4i4cZI4IvoTEd7IsvS2lPgQ9+l0BucQ6WtEfOIBPk6J4P3xOP1Eon8RALrd/kWA6LOHCSIiQoTXsyz95mFrLf59t5u8RgRF+CVymV3MstFVrk8lPuj0j4jjeBPxkREAPFpGjENwskvVwp8fCUTTJM/z/TK+P2gNG4BOJ9mJIrxWRYRDcL9bnU5yHhG+KPfNP6ydzWhnPE6vV/H++Fo2AN1uchsAX6kqwiGYO1aEH0V4q6p/Bw+Gd7IsfXW52nmVAACD7wHghWVEFBAQwVvjcfrlMvXaa3jh/9/9D1k2fJHjgwAAyR0APMcRMZvRm9YgEAi/eA74NsvSytP3aFZsADqdZDuKcI8DQFFrCQKZ8Is7FtrO8/QGx3s2AFXfAk4TawECqfAB4C7RP/21vwUUgZa9ByhDasgQCIZfzMx3smz0eRlPT1vDngCLzeM42UPEba6gUI8DyfCJ6HqepzsSXosBUIiJ4+QWIp6XEBbSJJANf3Yzz0cXJDwWeQ08LsQhuN+RJodfCwA+CQ4BiOPBFiKwntIXuxHJfvMX+4oeAUfZj+P+DcRoS2JUaTwONIRf2wQ4fDC0CYGW8GsHYH4c2IJAU/grAUAaAiK4kOfDmxJHi/Qe2sJfGQAWINAY/koBCBkCreGvHIAQIdAc/loACAkC7eGvDYAQIAgh/LUCoBmCUMJfOwAaIYjjwSVEuCzxClnX9W4VbbVdBVcRIXlZVOc9gXD4V/J8tFvFpzrWNgIADZMgxPAbcQTU9QMkyUkQaviNA6CJkyDk8BsJQA0Q7Ob58Moy52fo4TcWgAMILiNGl5YJ7ngNEVSGwEL4jQZgnRBYCb/xAKwDAkvhqwBglRBYC18NAKuAII6TDxDxQ5lnjlkjLnnK9NKYi6AyYuO4X8uDoey+esJXNQEWgMiGBbsAs7bc24au8FUCIH0clJk8ZdYQ6QtfLQBNg0Br+KoBaAoERPRRnqciD49lJo30GlUPgSc1L/lMUNXcZW4Yq35G3evVA7CuSRBC+OqPgKPfjlVOglDCDwqAVU2CkMIPDoC6IQgt/CABqAuCEMMPFgBpCEINP2gA5hDwf8ATcvjBAzCHYPl/xx96+CYAWBYCC+GbAaAqBFbCNwXAAQS7iPDpKderd4lgK8+HX9V9BduU/YO4Cq5i5tmzvZdbrdZ7APD8ou7g9xn9OJ3CtrXfcmYOgEXovV7v6ekUuq0W5VmW/Vr83+tVQAplrVkAQgmQ24cDwHVQeb0DoDxArnwHgOug8noHQHmAXPkOANdB5fUOgPIAufIdAK6DyusdAOUBcuU7AFwHldc7AMoD5Mp3ALgOKq93AJQHyJXvAHAdVF7vACgPkCvfAeA6qLzeAVAeIFe+A8B1UHm9A6A8QK58B4DroPJ6B0B5gFz5DgDXQeX1DoDyALnyHQCug8rrHQDlAXLlOwBcB5XXOwDKA+TKdwC4DiqvdwCUB8iV7wBwHVRe7wAoD5Ar3wHgOqi83gFQHiBXvgPAdVB5vQOgPECufAeA66Dy+v8A19bpn56zJpQAAAAASUVORK5CYII=) no-repeat center center;
+  -webkit-background-size: cover;
+  background-size: cover;
+}
+
+.mj--datepicker-mask .mj--datepicker-week,
+.mj--datepicker-mask .mj--datepicker-items {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0 .27rem;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.mj--datepicker-mask .mj--datepicker-item {
+  font-size: .24rem;
+  line-height: .78rem;
+  width: .78rem;
+  height: .78rem;
+  -webkit-transition: all ease .3s;
+  -o-transition: all ease .3s;
+  transition: all ease .3s;
+  text-align: center;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  outline: none;
+}
+
+.mj--datepicker-mask .mj--datepicker-week {
+  color: #666;
+}
+
+.mj--datepicker-mask .mj--datepicker-items {
+  font-family: Arial;
+  color: #1b1b1f;
+}
+
+.mj--datepicker-mask .mj--datepicker-footer {
+  position: absolute;
+  bottom: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: 1rem;
+  padding-right: .1rem;
+  text-align: right;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.mj--datepicker-mask .mj--datepicker-footer .mj--datepicker-btn {
+  font-size: .28rem;
+  font-weight: bold;
+  line-height: 1rem;
+  padding: 0 .3rem;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+@media(min-width: 992px) {
+  .mj--datepicker-mask .mj--datepicker-footer .mj--datepicker-btn {
+    cursor: pointer;
+  }
+  .mj--datepicker-mask .mj--datepicker-control .mj--datepicker-control-btn {
+    cursor: pointer;
+  }
+  .mj--datepicker-mask .mj--datepicker-item {
+    cursor: pointer;
+  }
+}
