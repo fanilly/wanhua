@@ -259,8 +259,8 @@ input {
   background-color: red;
   position: absolute;
   left: 0;
-  right: 0;
-  top: 0;
+  right: .1rem;
+  top: -.1rem;
   margin: auto;
   transform: translateX(.5rem);
   border-radius: 50%;
@@ -1207,12 +1207,13 @@ input {
 
 .customer-invitations-detail-page .cremark .content {
   font-size: .3rem;
-  line-height: .7rem;
+  line-height: .6rem;
   color: #666;
 }
 
 .customer-invitations-detail-page .cremark .content img {
   max-width: 100%;
+  display: block;
 }
 
 .customer-invitations-detail-page .cremark .content.empty {

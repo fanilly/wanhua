@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>平台公告</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <script src="./librarys/scripts/rem.js"></script>
+  <link rel="stylesheet" type="text/css" href="./librarys/styles/common.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./styles/public.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./styles/xss.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./librarys/jqweui/lib/weui.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./librarys/jqweui/css/jquery-weui.css?v={:config('asset_version')}">
+</head>
+
+<body>
+
+  <style>
+    body{ background-color: #f7f7f7; }
+    </style>
+
+  <!-- 待办提醒 -->
+  <div class="wait_deal" id="app">
+
+    <div class="itemClock">
+      <div class="part part1">
+        <div class="time">今天09:27</div>
+        <a href="./noticeDetail.html" class="item new">
+          <img src="./assets/icon10.png" class="icon" alt="">
+          <div class="info">
+            <h3>公告标题</h3>
+            <p>公告描述</p>
+            <div class="know public-top-line"><span>查看详情</span></div>
+          </div>
+        </a>
+      </div>
+      <div class="part part1">
+        <div class="time">今天09:27</div>
+        <a href="./noticeDetail.html" class="item">
+          <img src="./assets/icon10.png" class="icon" alt="">
+          <div class="info">
+            <h3>公告标题</h3>
+            <p>公告描述</p>
+            <div class="know public-top-line"><span>查看详情</span></div>
+          </div>
+        </a>
+      </div>
+
+      <!-- 没有更多 -->
+      <!-- v-if='commentLoadedAll && !noCommentLists' -->
+      <div class="no_more">已加载全部内容~</div>
+      <!-- v-if='allowLoadMore && noCommentLists' -->
+      <!-- <div class="no_more"><img src="__STATIC__/client/assets/a06.png" alt="">暂无内容~</div>  -->
+      <!-- v-if='!commentLoadedAll && !noCommentLists' -->
+      <!-- <div class="weui-loadmore"><i class="weui-loading"></i><span class="weui-loadmore__tips">正在加载</span></div> -->
+      <!-- 没有更多 -->
+
+    </div>
+  </div>
+  <!-- 待办提醒 -->
+
+  <script src="./librarys/scripts/vue.js?v={:config('asset_version')}"></script>
+  <script src="./librarys/jqweui/lib/jquery-2.1.4.js?v={:config('asset_version')}"></script>
+  <script src="./librarys/jqweui/js/jquery-weui.min.js?v={:config('asset_version')}"></script>
+  <script src="./scripts/public.js?v={:config('asset_version')}"></script>
+  <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js?v={:config('asset_version')}"></script>
+  <script type="text/javascript">
+    (function() {
+      var vm = new Vue({
+        el: '#app',
+        data: {
+          typeNum: 0
+        },
+        methods: {
+          switchType(num) {
+            this.typeNum = num
+          }
+        },
+        mounted: function() {
+
+        }
+      });
+
+    })();
+
+  </script>
+</body>
+
+</html>
