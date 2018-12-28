@@ -2236,6 +2236,10 @@ textarea:-ms-input-placeholder,
   background-color: #ffaa30;
 }
 
+.public-list-type03 .item .lside.gray {
+  background-color: #999999;
+}
+
 .public-list-type03 .item .lside.green {
   background-color: #4bd79a;
 }
@@ -2266,6 +2270,7 @@ textarea:-ms-input-placeholder,
 
 .public-list-type03 .item .rside p {
   font-size: .24rem;
+  position: relative;
 }
 
 .public-list-type03 .item .rside p .txt {
@@ -2275,6 +2280,9 @@ textarea:-ms-input-placeholder,
 .public-list-type03 .item .rside p .right {
   float: right;
   color: #00aeff;
+  position: absolute;
+  right: 0;
+  bottom: 0;
 }
 
 .public-tags-blue {
@@ -2284,6 +2292,15 @@ textarea:-ms-input-placeholder,
   -webkit-border-radius: .04rem;
   border-radius: .04rem;
   background-color: rgba(0, 174, 255, .15);
+}
+
+.public-tags-gray0001 {
+  font-size: .2rem;
+  padding: .04rem .1rem;
+  color: #999;
+  -webkit-border-radius: .04rem;
+  border-radius: .04rem;
+  background-color: rgba(248, 248, 248);
 }
 
 .public-tags-white {

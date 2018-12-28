@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>日程</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <script src="./librarys/scripts/rem.js"></script>
+  <link rel="stylesheet" type="text/css" href="./librarys/styles/common.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./styles/public.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./styles/style.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./librarys/jqweui/lib/weui.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./librarys/jqweui/css/jquery-weui.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./styles/animate.css">
+  <link rel="stylesheet" type="text/css" href="./librarys/LCalendar/css/LCalendar.css" />
+</head>
+
+<body>
+  <div class="schedule-page public-wbg">
+
+    <!--============================
+    =            header            =
+    =============================-->
+
+    <div class="header public-flex-center public-bottom-line">
+      <div class="lside public-flex-center">
+        <a href="#" class="active">全部</a>
+        <a href="#">普通</a>
+        <a href="#">高级</a>
+      </div>
+      <div class="rside public-flex1 public-flex-center">
+        <a class="search public-flex-center">
+          <img src="./assets/record.png">
+          <span>记录</span>
+        </a>
+      </div>
+    </div>
+    <div style="height: .88rem"></div>
+
+    <!--====  End of header  ====-->
+
+
+
+
+
+    <!--==================================
+    =            page content            =
+    ===================================-->
+
+    <div class="content-wapper">
+      <div class="public-list-type03">
+        <a href="./scheduleInfo.html" class="item">
+          <div class="lside blue">高级</div>
+          <div class="rside public-bottom-line">
+            <h3 class="title">任务名称</h3>
+            <h6 class="remark">任务数量： 23000</h6>
+            <p><span class="txt">发布时间：2018-09-18</span><span class="right fs36"><i class="fs22">￥</i>25</span></p>
+          </div>
+        </a>
+        <a href="./scheduleInfo.html" class="item">
+          <div class="lside gray">普通</div>
+          <div class="rside public-bottom-line">
+            <h3 class="title">任务名称</h3>
+            <h6 class="remark">任务数量： 23000</h6>
+            <p><span class="txt">发布时间：2018-09-18</span><span class="right fs36"><i class="fs22">￥</i>25</span></p>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!--====  End of page content  ====-->
+
+    <a href="./withdraw.html" class="public-suspension-menu animated" style="width: 1.48rem; height: 1.5rem; z-index: 40;">
+      <img class="control" src="./assets/icon54.png" style="width: 1.48rem; height: 1.5rem; box-shadow: none;">
+    </a>
+
+
+    <!--============================
+    =            footer            =
+    =============================-->
+    <div style="height: .98rem"></div>
+    <div class="public-footer-nav">
+      <a class="item" href="./index.html">
+        <img src="./assets/icon14.png">
+        <!-- <img src="./assets/icon13.png"> -->
+        <p>首页</p>
+      </a>
+      <a class="item active" href="./work.html">
+        <!-- <img src="./assets/icon17.png"> -->
+        <img src="./assets/icon18.png">
+        <p>任务大厅</p>
+      </a>
+      <a class="item" href="./center.html">
+        <img src="./assets/icon19.png">
+        <!-- <img src="./assets/icon20.png"> -->
+        <p>我的</p>
+      </a>
+    </div>
+
+    <!--====  End of footer  ====-->
+
+
+
+  </div>
+  <script src="./librarys/scripts/vue.js?v={:config('asset_version')}"></script>
+  <script src="./librarys/jqweui/lib/jquery-2.1.4.js?v={:config('asset_version')}"></script>
+  <script src="./librarys/jqweui/js/jquery-weui.min.js?v={:config('asset_version')}"></script>
+  <script src="./scripts/public.js?v={:config('asset_version')}"></script>
+  <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js?v={:config('asset_version')}"></script>
+  <script src="./librarys/LCalendar/js/LCalendar.js" type="text/javascript" charset="utf-8"></script>
+  <script>
+  (function() {
+    console.log($)
+    var calendar = new LCalendar();
+    calendar.init({
+      trigger: '#mj_js_datepicker', //标签id
+      type: 'ym', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
+      minDate: (new Date().getFullYear() - 3) + '-' + 1 + '-' + 1, //最小日期
+      maxDate: (new Date().getFullYear() + 3) + '-' + 12 + '-' + 31, //最大日期
+      callback: function(year, month) {
+        console.log(year, month)
+      }
+    });
+
+    // 初始化横向日历滚动位置
+    var activeItemLeft = $('.calendar .active')[0].getBoundingClientRect().left,
+      pageWidth = $(window).width();
+    $('.calendar').scrollLeft(activeItemLeft - pageWidth + pageWidth / 2 + $('.calendar .active').width() / 2);
+  })()
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>发布任务</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <script src="./librarys/scripts/rem.js"></script>
+  <link rel="stylesheet" type="text/css" href="./librarys/jqweui/lib/weui.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./librarys/jqweui/css/jquery-weui.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./librarys/styles/common.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./styles/public.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./styles/style.css?v={:config('asset_version')}">
+</head>
+
+<body>
+  <div class="customer-add-page public-gbg" id="form_app" v-cloak>
+
+    <div class="input-group">
+      <div class="public-input-box-type03 public-flex-center">
+        <label class="lside public-flex-center"><span class="name">任务标题</span></label>
+        <input class="input public-flex1" type="number" name="" placeholder="点击输入">
+      </div>
+    </div>
+
+    <div class="input-group" style="padding-top: .2rem">
+      <div class="public-textarea-box-type01">
+        <div class="title">任务详情</div>
+        <textarea placeholder="请输入任务文案" autoHeight="true"></textarea>
+      </div>
+    </div>
+
+    <div class="input-group" style="padding:.2rem .3rem; margin-top: .14rem">
+      <h3 class="title" style="font-size: .26rem;font-weight: normal;">上传图片</h3>
+      <div class="public-photo">
+        <div class="item">
+          <div style="background-image: url(./assets/d08.png)" class="img public-bgimg"></div>
+          <img src="assets/c35.png" alt="" class="close">
+        </div>
+        <div class="add"><img src="assets/c36.png" alt=""><input type="file"></div>
+      </div>
+    </div>
+
+
+    <div class="input-group">
+      <div class="public-input-box-type03 public-bottom-line public-flex-center">
+        <label class="lside public-flex-center"><span class="name">任务单价</span><span class="fs22 gray66">(价格根据当日会员活动指数动态调价)</span></label>
+        <div class="input public-flex1 public-color-success fs36" style="line-height: 1rem;"><span class="fs22 gray99">￥</span>2</div>
+      </div>
+      <div class="public-input-box-type03 public-bottom-line public-flex-center">
+        <label class="lside public-flex-center"><span class="name">任务数量</span></label>
+        <input class="input public-flex1" type="number" name="" placeholder="点击输入">
+      </div>
+      <div class="public-input-box-type03 public-flex-center">
+        <label class="lside public-flex-center"><span class="name">广告总价</span></label>
+        <div class="input public-flex1" style="line-height: 1rem;">3000</div>
+      </div>
+    </div>
+
+    <p class="remark gray66 fs24" style="padding: .3rem;">
+      任务发布须知：当任务提交成功后平台工作人员将于两小时内与您联系，请保持绑定手机号的通讯畅通
+    </p>
+
+
+    <div class="submit">
+      <button class="public-btn-type02">提交</button>
+    </div>
+
+  </div>
+  <script src="./librarys/scripts/vue.js?v={:config('asset_version')}"></script>
+  <script src="./librarys/jqweui/lib/jquery-2.1.4.js?v={:config('asset_version')}"></script>
+  <script src="./librarys/jqweui/js/jquery-weui.min.js?v={:config('asset_version')}"></script>
+  <script src="./scripts/public.js?v={:config('asset_version')}"></script>
+  <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js?v={:config('asset_version')}"></script>
+
+  <script>
+
+    var FormApp = new Vue({
+      el: '#form_app',
+      data: {
+        formData: {
+          name: ''
+        },
+      },
+      methods: {
+
+      },
+      mounted: function(){
+
+      }
+    })
+
+
+
+
+
+  </script>
+</body>
+
+</html>
