@@ -10,10 +10,11 @@
   <link rel="stylesheet" type="text/css" href="./librarys/jqweui/css/jquery-weui.css?v={:config('asset_version')}">
   <link rel="stylesheet" type="text/css" href="./styles/public.css?v={:config('asset_version')}">
   <link rel="stylesheet" type="text/css" href="./styles/style.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./styles/xss.css?v={:config('asset_version')}">
 </head>
 
 <body>
-  <div class="buy-vip-page public-wbg" id="app" v-cloak>
+  <div class="buy-vip-page public-wbg reportBox" id="app" v-cloak>
     <main class="main">
 
       <div class="card public-bgimg" :style="'background-image: url('+vips[vipIndex].img+')'">
@@ -62,6 +63,38 @@
 
       <!--====  End of remark  ====-->
 
+
+      <!-- 上传凭证弹出层 -->
+      <div class="public-mask" id="clock_pop" data-origin="mask">
+        <div class="public-pop-type02 public-center-middle">
+          <div class="public-pop-header-type01 public-bottom-line">
+            <div class="lside">上传凭证</div>
+            <img src="./assets/cloup.png" class="close-icon js-hide-mask" data-target="#clock_pop" alt="close">
+          </div>
+          <div class="clock-pop-content">
+            <div class="clock-pop-content-top public-bottom-line">
+              <div class="public-point-line">
+                <div class="point yellow"></div>
+                <div class="title">当前时间：</div>
+                <div class="info">08:28</div>
+              </div>
+            </div>
+            <textarea class="clock-pop-textarea" name="" id="" placeholder="备注（选填）"></textarea>
+            <div class="public-photo" style="padding: 0 .3rem;">
+              <div class="item">
+                <div style="background-image: url(./assets/d08.png)" class="img public-bgimg"></div>
+                <img src="assets/c35.png" alt="" class="close">
+              </div>
+              <div class="add"><img src="assets/c36.png" alt=""><input type="file"></div>
+            </div>
+            <div class="clock-pop-btn-wapper" style="margin-top: .6rem;">
+              <button class="public-btn-type01" @click="handleSubmitTask">确定提交</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
       <!--============================
       =            footer            =
       =============================-->
@@ -72,8 +105,8 @@
           <span class="fs44">200.00</span>
           <span class="fs22">元</span>
         </div>
-        <a href="./buyVIPSuccess.html" class="btn" style="margin-right: .2rem; background-color: #999">上传凭证</a>
-        <a href="./buyVIPSuccess.html" class="btn">立即购买</a>
+        <a class="btn js-show-mask" style="margin-right: .2rem; background-color: #999" data-target="#clock_pop">上传凭证</a>
+        <a class="btn" @click.prevent.stop="handleNowBuy">立即购买</a>
       </footer>
 
       <!--====  End of footer  ====-->
@@ -107,6 +140,24 @@
       methods: {
         handleToggleVIPType(index){
           this.vipIndex = index;
+        },
+        handleNowBuy: function(){
+          var self = this;
+          $.actions({
+            actions: [{
+              text: "支付宝支付",
+              className: 'public-color-success',
+              onClick: function() {
+                self.withdrawTarget = '支付宝';
+              }
+            }, {
+              text: "微信支付",
+              className: 'public-color-success',
+              onClick: function() {
+                self.withdrawTarget = '微信';
+              }
+            }]
+          });
         }
       }
     })

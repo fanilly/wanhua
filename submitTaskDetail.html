@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>任务详情</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <script src="./librarys/scripts/rem.js"></script>
+  <link rel="stylesheet" type="text/css" href="./librarys/styles/common.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./librarys/jqweui/lib/weui.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./librarys/jqweui/css/jquery-weui.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./styles/public.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./styles/style.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./styles/xss.css?v={:config('asset_version')}">
+</head>
+
+<body>
+  <div class="customer-invitations-detail-page public-wbg reportBox" id="app">
+
+    <div class="customer-info">
+      <h2 class="public-line-title public-flex-center">
+        <span class="public-flex1">任务标题</span>
+      </h2>
+      <div class="info-box">
+        <div class="lside">发布时间</div>
+        <div class="center">2018-10-11 15:00</div>
+      </div>
+      <div class="info-box">
+        <div class="lside">领取时间</div>
+        <div class="center">2018-10-11 15:00</div>
+      </div>
+      <a href="#" class="info-box">
+        <div class="lside">任务条数</div>
+        <div class="center">300/1000</div>
+      </a>
+    </div>
+
+    <div class="cremark">
+      <div class="public-line-title public-flex-center" style="font-size: .28rem; padding-right: 0; margin-bottom: .3rem;">
+        <span class="public-flex1">任务文案</span>
+      </div>
+      <div class="content" id="copy_content">任务文案任务文案任务文案任务文案任务文案任务文案任务文案任务文案任务文案任务文案任务文案任务文案任务文案任务文案任务文案任务文案任务文案任务文案</div>
+
+      <div class="public-line-title" style="font-size: .28rem; margin-top: .3rem; margin-bottom: .1rem;">任务图片</div>
+      <div class="public-photo">
+        <div class="item">
+          <div style="background-image: url(./assets/bg.jpg)" class="img public-bgimg"></div>
+        </div>
+      </div>
+    </div>
+
+
+    <!--============================
+    =            footer            =
+    =============================-->
+
+    <div style="height: 1.2rem;"></div>
+    <footer class="public-footer-type01 public-flex-center">
+      <div class="public-flex1">
+        <span class="fs22">任务佣金</span>
+        <span class="fs44">200.00</span>
+        <span class="fs22">元</span>
+      </div>
+      <a class="btn js-show-mask" data-target="#clock_pop">立即提交</a>
+    </footer>
+
+    <!--====  End of footer  ====-->
+
+    <!-- 提交任务弹出层 -->
+    <div class="public-mask" id="clock_pop" data-origin="mask">
+      <div class="public-pop-type02 public-center-middle">
+        <div class="public-pop-header-type01 public-bottom-line">
+          <div class="lside">提交任务</div>
+          <img src="./assets/cloup.png" class="close-icon js-hide-mask" data-target="#clock_pop" alt="close">
+        </div>
+        <div class="clock-pop-content">
+          <div class="clock-pop-content-top public-bottom-line">
+            <div class="public-point-line">
+              <div class="point yellow"></div>
+              <div class="title">当前时间：</div>
+              <div class="info">08:28</div>
+            </div>
+          </div>
+          <textarea class="clock-pop-textarea" name="" id="" placeholder="任务备注（选填）"></textarea>
+          <div class="public-photo" style="padding: 0 .3rem;">
+            <div class="item">
+              <div style="background-image: url(./assets/d08.png)" class="img public-bgimg"></div>
+              <img src="assets/c35.png" alt="" class="close">
+            </div>
+            <div class="add"><img src="assets/c36.png" alt=""><input type="file"></div>
+          </div>
+          <div class="clock-pop-btn-wapper" style="margin-top: .6rem;">
+            <button class="public-btn-type01" @click="handleSubmitTask">确定提交</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+  <script src="./librarys/scripts/vue.js?v={:config('asset_version')}"></script>
+  <script src="./librarys/jqweui/lib/jquery-2.1.4.js?v={:config('asset_version')}"></script>
+  <script src="./librarys/jqweui/js/jquery-weui.min.js?v={:config('asset_version')}"></script>
+  <script src="./scripts/public.js?v={:config('asset_version')}"></script>
+
+  <script src="./scripts/clipboard.js"></script>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+
+      },
+      methods: {
+        //领取任务
+        handleSubmitTask: function(){
+
+        },
+      },
+      mounted: function(){
+
+        /*===========================================
+        =            copy to Shear plate            =
+        ===========================================*/
+        var clipboard = new ClipboardJS('#copy_button', {
+          target: function() {
+            return document.getElementById('copy_content');
+          }
+        });
+        clipboard.on('success', function(e) {
+          $.toast('复制成功','text');
+        });
+        clipboard.on('error', function(e) {
+          $.toast('复制失败，请手动选择文案进行复制','text');
+        });
+
+      }
+    });
+  </script>
+</body>
+
+</html>
