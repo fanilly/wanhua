@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>购买会员卡</title>
+  <title>我的会员</title>
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <script src="./librarys/scripts/rem.js"></script>
   <link rel="stylesheet" type="text/css" href="./librarys/jqweui/lib/weui.css?v={:config('asset_version')}">
@@ -14,24 +14,25 @@
 </head>
 
 <body>
-  <div class="buy-vip-page public-wbg reportBox" id="app" v-cloak>
+  <div class="my-vip-page public-wbg reportBox" id="app" v-cloak>
     <main class="main">
 
-      <div class="card public-bgimg" :style="'background-image: url('+vips[vipIndex].img+')'">
-        <h2 class="fs44">{{vips[vipIndex].name}}</h2>
-        <h5 class="desc fs24">{{vips[vipIndex].desc}}</h5>
+      <div class="card public-bgimg" style="background-image: url(./assets/gb_25.png)">
+        <h2 class="fs44">白银会员</h2>
+        <h5 class="desc fs24">平均每次任务可赚5元每天可赚10元</h5>
         <p class="fs24">该会员永久有效</p>
       </div>
 
-      <div class="items clear-fix">
-        <div :class="{item:true,active:vipIndex == index}" v-for="item,index in vips" @click="handleToggleVIPType(index)">
-          <div class="public-flex-center">
-            <h4 class="fs30 gray33 public-flex1">{{item.name}}</h4>
-            <p class="fs36 price"><span class="fs22">￥</span>{{item.price}}</p>
+      <div class="card-info">
+        <div class="buy public-flex-center public-bottom-line">
+          <div class="public-flex1">
+            <h2 class="gray33 fs34">900元</h2>
+            <div class="public-flex-center">
+              <p class="fs24 gray66">每日可赚70元+</p>
+            </div>
           </div>
-          <div class="public-flex-center">
-            <p class="fs26 gray66 public-flex1">原价：</p>
-            <p class="gray99 fs28 through-text"><span class="fs22">￥</span>{{item.old_price}}</p>
+          <div style="width: 2.2rem">
+            <a class="public-btn-type01" @click="handleUpgradeVip">升级会员</a>
           </div>
         </div>
       </div>
@@ -42,22 +43,14 @@
       =============================-->
 
       <section class="remark">
-        <h3 class="fs24 title gray66 public-line-title">会员购买流程</h3>
+        <h3 class="fs24 title gray66 public-line-title">当前享受会员权益</h3>
         <div class="list public-flex-center">
           <div class="point"></div>
-          <div class="fs24 gray66 public-flex1">1.选择将要购买的会员类型点击立即购买</div>
+          <div class="fs24 gray66 public-flex1">每日截取普通任务赚取佣金</div>
         </div>
         <div class="list public-flex-center">
           <div class="point"></div>
-          <div class="fs24 gray66 public-flex1">2.选择支付方式,保存支付二维码打开对应平台支付</div>
-        </div>
-        <div class="list public-flex-center">
-          <div class="point"></div>
-          <div class="fs24 gray66 public-flex1">3.支付成功后截图并回到本页面点击上传支付截图</div>
-        </div>
-        <div class="list public-flex-center">
-          <div class="point"></div>
-          <div class="fs24 gray66 public-flex1">4.等待后台审核（一小时内审核完毕，夜间12点后审核可能会延长，请谅解）</div>
+          <div class="fs24 gray66 public-flex1">下级会员每完成一次任务可得2元佣金</div>
         </div>
       </section>
 
@@ -102,15 +95,11 @@
       <div style="height: 1.2rem;"></div>
       <footer class="public-footer-type01 public-flex-center">
         <div class="public-flex1">
-          <span class="fs44">200.00</span>
-          <span class="fs22">元</span>
         </div>
         <a class="btn js-show-mask" style="margin-right: .2rem; background-color: #999" data-target="#clock_pop">上传凭证</a>
-        <a class="btn" @click.prevent.stop="handleNowBuy">立即购买</a>
       </footer>
 
       <!--====  End of footer  ====-->
-
 
     </main>
   </div>
@@ -122,34 +111,10 @@
     var app = new Vue({
       el: '#app',
       data: {
-        vipIndex: 0,
-        vips: [
-          {
-            name: '黄金会员',
-            desc: '平均每天可赚取75元+',
-            validity: 30,
-            price: 999,
-            old_price: 1399,
-            img: './assets/gb_24.png',
-          },{
-            name: '白银会员',
-            desc: '平均配天可赚取15元+',
-            price: 99,
-            old_price: 159,
-            validity: 30,
-            img: './assets/gb_25.png',
-          }
-        ]
+
       },
       methods: {
-        handleToggleVIPType(index){
-          this.vipIndex = index;
-        },
-
-        handleSubmitTask: function(){
-
-        },
-        handleNowBuy: function(){
+        handleUpgradeVip: function(){
           var self = this;
           $.actions({
             actions: [{

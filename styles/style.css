@@ -3083,3 +3083,74 @@ input {
   padding-top: .4rem;
   opacity: .8;
 }
+
+
+/*===================================================
+=                     我的会员                      =
+====================================================*/
+
+
+.my-vip-page .main {
+  padding: .4rem;
+}
+
+.my-vip-page .remark {
+  margin-top: 1rem;
+}
+
+.my-vip-page .remark .title {
+  margin-bottom: .2rem;
+}
+
+.my-vip-page .remark .list {
+  padding: .05rem 0;
+}
+
+.my-vip-page .remark .list .point {
+  display: block;
+  width: .06rem;
+  height: .06rem;
+  border-radius: 50%;
+  background-color: #666;
+  margin-right: .2rem;
+}
+
+.my-vip-page .card {
+  width: 6.64rem;
+  height: 4.1rem;
+  display: block;
+  margin: 0 auto;
+  padding: 1.5rem .6rem 0;
+  color: #494949;
+}
+
+.my-vip-page .card .desc {
+  font-weight: normal;
+  padding: .1rem 0 .3rem;
+}
+
+.my-vip-page .card p {
+  opacity: .8;
+}
+
+.my-vip-page .card-info {
+  padding: .1rem .3rem;
+}
+
+.my-vip-page .card-info .time {
+  position: relative;
+  height: 1.3rem;
+}
+
+.my-vip-page .card-info .buy {
+  padding: .42rem 0;
+  position: relative;
+}
+
+.my-vip-page .card-info .buy .public-tags-type01 {
+  margin-right: .2rem;
+}
+
+.my-vip-page .card-info .buy h2 {
+  line-height: 2;
+}

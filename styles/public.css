@@ -481,6 +481,11 @@ textarea {
 }
 
 /*=====  End of weui style rewrite  ======*/
+
+.through-text {
+  text-decoration: line-through;
+}
+
 .fs22 {
   font-size: .22rem;
 }
