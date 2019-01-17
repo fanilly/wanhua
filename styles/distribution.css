@@ -1,0 +1,1011 @@
+body {
+  background-color: #f7f7f7;
+}
+
+input,button{
+  font-family: 'Microsoft YaHei' !important;
+}
+
+.infoTop{
+  /*background-image: linear-gradient(90deg, 
+    #601aff 0%, 
+    #8a00ff 100%), 
+  linear-gradient(
+    #4766ed, 
+    #4766ed);*/
+  background-color: #fff;
+  position: relative;
+  padding: 0.6rem 0.3rem 0.8rem 2rem;
+  overflow: hidden;
+
+}
+
+.pbimg{
+  position: absolute;
+  left: 0; 
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.pbimg img{
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.pbimg img.dw{
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+  left: 0;
+  bottom: 0;
+}
+
+.infoTop .tx{ 
+  display: block;
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: 50%;
+  overflow: hidden;
+  padding: 0.05rem;
+  background-color: #fff;
+  position: absolute;
+  left: 0.3rem; 
+  top: 0.6rem;
+  z-index: 3;
+}
+
+.infoTop .tx img{
+  display: block;
+  width: 1.3rem;
+  height: 1.3rem; 
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.infoTop .info{
+  min-height: 1.4rem;
+  padding-right: 0.3rem;
+  position: relative;
+  z-index: 3;
+}
+
+.infoTop .info .name{
+  display: block;
+  font-size: 0.36rem;
+  line-height: 0.36rem;
+  color: #fff;
+  font-weight: bold;
+  padding: 0.2rem 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.infoTop .info .tips{
+  overflow: hidden;
+
+}
+
+.infoTop .info .tips span{
+  height: 0.48rem; 
+  line-height: 0.48rem;
+  background-color: rgba(255,255,255,0.1);
+  border-radius: 0.48rem;
+  text-align: center;
+  float: left;
+  font-size: 0.24rem;
+  color: #fff;
+  padding: 0 0.18rem;
+}
+
+.infoTop .info img{
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  margin-top: -0.14rem;
+  width: 0.16rem;
+  height: 0.28rem;
+}
+
+.relationship{
+  background-color: #fff;
+  padding: 0 0.3rem 0.3rem;
+  overflow: hidden;
+}
+
+
+
+.relationship a{
+  display: block;
+  width: 48%; 
+  float: left;
+  padding: 0.42rem 0.32rem 0.42rem 1.2rem;
+  position: relative;
+  box-shadow:0px 0.1rem 0.2rem 0px 
+    rgba(204, 204, 204, 0.31);
+    border-radius: 0.1rem;
+}
+
+.relationship  a:nth-child(2n){
+  float: right;
+}
+
+.relationship a span{
+  display: block;
+}
+
+.relationship  a span b{
+  display: block;
+  font-size: 0.31rem;
+  line-height:0.5rem;
+  color: #323558;
+  font-weight: bold;
+  padding-right: 0.3rem;
+  position:relative;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  height: 0.5rem;
+}
+.relationship a:first-child span b{
+  padding-right: 0rem;
+}
+
+.relationship  a span b img{
+  display: block;
+  position:absolute;
+  right: 0;
+  top: 50%;
+  width: 0.09rem;
+  height: 0.16rem;
+  margin-top: -0.08rem;
+}
+
+.relationship a span b em{
+  font-size: 0.34rem;
+  font-style: normal;
+}
+
+.relationship a span b i{
+  font-size: 0.28rem;
+  font-style: normal;
+}
+
+.relationship a span > i{
+  display: block;
+  font-size: 0.24rem;
+  line-height:0.4rem;
+  color: #a1a2b3;
+}
+
+.leftimg{
+  position: absolute;
+  left: 0.32rem; 
+  top: 50%;
+  margin-top: -0.32rem;
+  width: 0.64rem;
+}
+
+.invitationCode{
+  padding: 0.5rem 0.3rem 0.4rem 0.3rem;
+  background-color: #fff;
+  margin-bottom: 0.22rem;
+}
+
+.invitationCode .code{
+  text-align: center;
+  font-size: 0.30rem;
+  color: #323558;
+  line-height:0.4rem;
+  margin-bottom: 0.2rem;
+}
+
+.invitationCode .code p{
+  font-size: 0.78rem;
+  line-height:0.82rem;
+  color: #323558;
+  margin-top: 0.28rem;
+  letter-spacing: -2px;
+  font-weight: bold;
+}
+
+.codeBtn{
+  overflow: hidden;
+  margin-top: 0.6rem;
+}
+
+.codeBtn .linkbtn{
+  display: block;
+  width: 48%; 
+  float: left;
+  font-size: 0.32rem;
+  line-height: 0.9rem;
+  border:1px solid #4766ed;
+  border-radius: 0.9rem;
+  text-align: center;
+}
+
+.codeBtn .linkbtn span{
+  display:inline-block;
+}
+
+.codeBtn .btn_copy{
+  color: #4766ed;
+}
+
+.codeBtn .btn_share{
+  color: #fff;
+  background-color: #4766ed;
+  float: right;
+}
+
+.codeBtn .btn_share span{
+  padding-left: 0.4rem;
+  position:relative;
+}
+
+.codeBtn .btn_share span img{
+  display: block;
+  width: 0.32rem;
+  height: 0.32rem;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  margin-top: -0.16rem;
+}
+
+.codeExplain{
+  background-color: #fff;
+  padding: 0.34rem 0.3rem;
+}
+
+.codeTit{
+  padding-left: 0.25rem;
+  position:relative;
+  font-size:0.28rem;
+  color: #323558;
+  margin-bottom: 0;
+}
+
+
+.codeTit:before{
+  content: '';
+  position:absolute;
+  left: 0;
+  top: 50%;
+  width: 0.05rem;
+  height: 0.26rem;
+  background-color: #4766ed;
+  margin-top: -0.13rem;
+}
+
+.codeExplain p{
+  padding: 0.2rem 0.25rem;
+  font-size: 0.26rem;
+  color: #666;
+  line-height: 0.44rem;
+}
+
+
+
+
+
+/*==================== 佣金明细 ===================*/
+.sumMoney{
+  background-color: #fff;
+  margin-bottom: 0.22rem;
+  padding: 0.42rem 0.3rem;
+}
+
+.sumMoney h2{
+  font-size: 0.26rem;
+  color: #666;
+  line-height: 0.3rem;
+  margin-bottom: 0.3rem;
+}
+
+.sumMoney h3{
+  font-size: 0.78rem;
+  color: #1c1c20;
+  line-height: 0.8rem;
+  font-weight: bold;
+}
+
+.sumMoney h3 span{
+  font-size: 0.24rem;
+  font-weight: normal;
+}
+
+.moneyStream{
+  background-color: #fff;
+}
+
+.moneyStream h4{
+  padding: 0 0.3rem;
+  line-height: 0.8rem;
+  border-bottom: 1px solid #ececec;
+  font-size:0.28rem;
+  color: #1c1c20;
+}
+
+.moneyStream h4 p{
+  padding-left:0.25rem;
+  position:relative;
+}
+
+.moneyStream h4 p:before{
+  content: '';
+  position:absolute;
+  left: 0; 
+  top: 50%;
+  width: 0.05rem;
+  height: 0.26rem;
+  background-color: #4766ed;
+  margin-top: -0.13rem;
+}
+
+.streamBox{
+  padding: 0 0.3rem;
+}
+
+.moneyStream .item{
+  padding: 0.34rem 1.5rem 0.34rem 0;
+  position:relative;
+  border-bottom: 1px solid #ececec;
+}
+
+.moneyStream .item h5{
+  font-size: 0.28rem;
+  color: #1c1c20;
+  line-height: 0.32rem;
+}
+
+.moneyStream .item h6{
+  font-size: 0.27rem;
+  color: #666;
+  font-weight: normal;
+  line-height: 0.30rem;
+  margin: 0.18rem 0 0.2rem 0;
+}
+
+.moneyStream .item p{
+  font-size: 0.24rem;
+  color: #b3b3b3;
+  line-height: 0.26rem;
+}
+
+.moneyStream .item .money{
+  position:absolute;
+  right: 0;
+  top: 50%;
+  margin-top: -0.5rem;
+  line-height: 1rem;
+  background-color: #fff;
+  color: #4766ed;
+  font-size: 0.24rem;
+}
+
+.moneyStream .item .money b{
+  font-size: 0.34rem;
+}
+
+
+/*==================== 佣金明细 ===================*/
+
+
+/*==================== 分享 ===================*/
+.shareStar{
+  background-color: #5148f0;
+}
+
+.shareStar .timg{
+  display: block;
+  width: 100%;
+}
+
+.shareStar .topIMG{
+  background-image: url(../assets/distribution/bg3.jpg);
+  background-size: 100% auto;
+  display: block;
+  width: 100%;
+  padding: 0.9rem 0.55rem 0.5rem 0.55rem;
+  background-repeat: no-repeat;
+}
+
+.shareStar .topIMG .pic{
+  position:relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 62.5%;
+  border:0.08rem solid #fff;
+  border-radius: 0.1rem;
+}
+
+.shareStar .topIMG .pic img{
+  display: block;
+  position:absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.1rem;
+}
+
+.shareContent{
+  padding: 0 0.55rem;
+  margin-top: -0.3rem;
+  position:relative;
+  z-index: 3;
+}
+.shareContent.ntop{
+  margin-top: 0;
+}
+
+.shareFirst{
+  background-color: #fff;
+  border-radius:0.15rem;
+  box-shadow: 0px 10px 10px 0px 
+    rgba(126, 0, 255, 0.21);
+  padding:0.4rem 0.45rem;
+  margin-bottom: 0.2rem;
+}
+
+.shareFirst h2{
+  font-size: 0.32rem;
+  color: #6d12ff;
+  line-height: 0.6rem; 
+  text-align: center;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: auto 0.32rem;
+}
+
+.shareFirst h2.bg1{
+  background-image: url(../assets/distribution/pic05@2x.png);
+}
+
+.shareFirst h2.bg2{
+  background-image: url(../assets/distribution/pic07@2x.png);
+}
+
+.shareFirst h3{
+  font-size:0.24rem;
+  color: #9990a8;
+  font-weight: normal;
+  text-align: center;
+  line-height: 0.3rem;
+}
+
+.shareFirst .fill{
+  margin-top: 0.45em;
+}
+
+.shareFirst .fill input{
+  display: block;
+  width: 100%;
+  line-height: 0.9rem;
+  border:1px solid #e6e6e6;
+  border-radius: 0.9rem;
+  padding: 0 0.3rem;
+  font-size: 0.3rem;
+  color: #ccc;
+  margin-bottom: 0.36rem;
+  box-shadow: none;
+}
+
+.shareFirst .fill button{
+  border:none;
+  display: block;
+  width: 100%;
+  background-image: linear-gradient(90deg, 
+    #601aff 0%, 
+    #8a00ff 100%), 
+  linear-gradient(
+    #f5f5f5, 
+    #f5f5f5);
+  background-blend-mode: normal, 
+    normal;
+  box-shadow: 0px 0.1rem 0.1rem 0px 
+    rgba(126, 0, 255, 0.21);
+  border-radius: 0.45rem;
+  line-height: 0.9rem;
+  font-size: 0.32rem;
+  color: #fff;
+}
+
+.shareFirst .timg{
+  margin-top: 0.3rem;
+}
+
+.shareStar .infomation{
+  margin-top: 0.4rem;
+
+}
+
+.shareStar .infomation h3{
+  font-size: 0.28rem;
+  color: #fff;
+  line-height: 0.6rem; 
+  text-align: center;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-image: url(../assets/distribution/pic10@2x.png);
+  background-size: auto 0.3rem;
+  margin-bottom: 0.45rem;
+}
+
+.shareStar .infomation p{
+  font-size: 0.26rem;
+  line-height: 0.54rem;
+  color: #bdc9e6;
+  padding-bottom: 0.5rem;
+}
+
+/*==================== 分享 ===================*/
+
+
+
+/*==================== 弹层 ===================*/
+.popBg{
+  background-color: rgba(0,0,0,0.6);
+  position:fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 55;
+  display: none;
+}
+
+.popBox{
+  position:fixed;
+  left: 10%;
+  top: 50%;
+  width: 80%;
+  margin-top: -3rem;
+  z-index: 56;
+  display: none;
+}
+
+.popBox .box{
+  background-color: #fff;
+  border-radius: 0.2rem;
+  overflow: hidden;
+  padding: 0.4rem;
+}
+
+.popBox .box h2{
+  font-size: 0.32rem;
+  color: #6d12ff;
+  line-height: 0.6rem; 
+  text-align: center;
+ 
+}
+
+.popBox .box h3{
+  font-size:0.24rem;
+  color: #9990a8;
+  font-weight: normal;
+  text-align: center;
+  line-height: 0.3rem;
+  margin-bottom: 0.44rem;
+}
+
+.popBox button{
+  border:none;
+  display: block;
+  width: 100%;
+  background-image: linear-gradient(90deg, 
+    #601aff 0%, 
+    #8a00ff 100%), 
+  linear-gradient(
+    #f5f5f5, 
+    #f5f5f5);
+  background-blend-mode: normal, 
+    normal;
+  box-shadow: 0px 0.1rem 0.1rem 0px 
+    rgba(126, 0, 255, 0.21);
+  border-radius: 0.45rem;
+  line-height: 0.9rem;
+  font-size: 0.32rem;
+  color: #fff;
+}
+
+.popBox .close{
+  display: block;
+  width: 0.72rem;
+  height: 0.72rem;
+  border-radius: 50%;
+  margin: 0.5rem auto 0 auto;
+}
+
+.popTip{
+  position:fixed;
+  left: 0%;
+  top: 0%;
+  width: 100%;
+  z-index: 56;
+  display: none;
+  padding: 0.3rem;
+}
+
+.popTip img{
+  display: block;
+  float: right;
+  width: 3.24rem;
+  max-width: 100%;
+}
+
+/*==================== 弹层 ===================*/
+
+
+
+/*==================== memberPage ===================*/
+.memberPage{
+  padding-bottom: 1rem;
+  background-color: #fff;
+}
+
+.floorOne{
+  position:relative;
+  padding: 0.5rem 0 0.4rem 0rem;
+  border-bottom: 0.2rem solid #f7f7f7;
+}
+
+.floorOne .bgimg{
+  display: block;
+  position:absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 0;
+}
+
+.floorOne .bgimg img{
+
+}
+
+.swiperBox{
+  /*overflow:hidden;
+  white-space: nowrap;
+  overflow-x: auto; */
+  position:relative;
+  padding: 0.2rem 0rem 0.3rem 0rem;
+  z-index: 1;
+}
+
+.swiper-slide{
+  padding:0 0%;
+}
+
+.sliddItem{
+  /*display: inline-block;*/
+  background-image: linear-gradient(90deg, 
+    #d0ad6f 0%, 
+    #fae6b7 100%), 
+  linear-gradient(
+    #4766ed, 
+    #4766ed);
+  background-blend-mode: normal, 
+    normal;
+  box-shadow: 0px 0.15rem 0.3rem 0px 
+    rgba(137, 116, 60, 0.31);
+  border-radius: 0.2rem;
+  padding: 0.4rem 2rem 0.4rem 0.4rem;
+  /*width: 300px !important;*/
+  height: 3.6rem !important;
+  position:relative;
+  /*transform: scale(0.9);*/
+}
+
+.sliddItem.on{
+  transform: scale(1);
+}
+
+.sliddItem h2{
+  font-size: 0.32rem;
+  padding-left:0.46rem;
+  position:relative;
+  color: #745734;
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-size: 0.32rem;
+  background-image: url(../assets/distribution/bg03@2x.png);
+  margin-bottom:0.6rem;
+}
+
+.sliddItem p{
+  font-size: 0.28rem;
+  line-height: 0.46rem;
+  padding-left:0.26rem;
+  position:relative;
+  /*overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;*/
+  color: #966b40;
+}
+
+.sliddItem p::before{
+  content: '';
+  position:absolute;
+  left: 0;
+  top:0.18rem ;
+  width: 0.1rem;
+  height: 0.1rem;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #966b40;
+}
+
+.sliddItem .dwInfo{
+  position:absolute;
+  right: 0.4rem;
+  top: -0.2rem;
+  
+}
+
+.sliddItem .dwInfo .name{
+  width: 0.54rem;
+  height: 1.2rem;
+  padding: 0.06rem 0 0.3rem 0.09rem;
+  text-align: center;
+  font-size: 0.28rem; 
+  line-height: 0.34rem;
+  color: #f9e4b5;
+  position:absolute;
+  right: 0;
+  top: 0;
+  background-image: url(../assets/distribution/bg02@2x.png)
+}
+
+.sliddItem .dwInfo .price{
+  display: block;
+  margin-top:2.7rem;
+  font-size: 0.22rem;
+  color: #87592b;
+  line-height: 0.96rem;
+  text-align: right;
+}
+.sliddItem .dwInfo .price span{
+  font-size: 0.62rem;
+  font-weight: bold;
+}
+
+.sliddItem .dwInfo .price a{
+  display: block;
+  width: 1.08rem;
+  line-height: 0.62rem;
+  border-radius: 0.62rem;
+  border:1px solid #87592b;
+  font-size: 0.3rem;
+  color: #87592b;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 0.3rem;
+}
+
+.sliddItem .outimg{
+  position:absolute;
+  right: 0rem;
+  bottom: 0rem;
+  width: 1.02rem;
+  height: 1.02rem;
+}
+
+
+
+.floorOne .toknow{
+  text-align: center;
+  margin-top: 0.25rem;
+  text-align: center;
+  padding:0 0.4rem;
+  font-size: 0.26rem;
+  color: #666666;
+}
+
+.floorOne .toknow span{
+  display: inline-block;
+  padding-left: 0.42rem;
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-size: 0.32rem;
+  background-image: url(../assets/distribution/bg05@2x.png)
+}
+
+.floorTwo{
+  padding: 0.36rem 0.4rem;
+}
+
+.floorTwo .timg{
+  display:block;
+  margin: 0 auto;
+  height:0.78rem; 
+}
+
+.floorTwo  .words{
+  margin-top: 0.2rem;
+  font-size: 0.26rem;
+  color: #666;
+  line-height: 0.54rem;
+}
+
+.buyBtn{
+  display: block;
+  width: 100%;
+  height: 1rem;
+  line-height: 1rem;
+  background-color: #d1b077;
+  font-size:0.32rem;
+  color: #fff;
+  position:fixed;
+  left: 0;
+  bottom: 0;
+  border:none;
+}
+/*==================== memberPage ===================*/
+
+/*==================== popBuy开始 ===================*/
+.buyBg{
+  position:fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 55;
+  background-color: rgba(0,0,0,0.6);
+  display: none;
+}
+
+.buyPop{
+  background-color: #fff;
+  position:fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 56;
+  display: none;
+}
+
+.buyPop h2{
+  font-size:0.3rem;
+  padding: 0 0.3rem;
+  color: #1c1c20;
+  line-height: 0.92rem;
+  border-bottom:1px solid #ececec;
+
+}
+
+.buyPop .close{
+  position:absolute;
+  right: 0.3rem;
+  top: 0.3rem;
+  width: 0.32rem;
+  height: 0.32rem;
+}
+
+.buyPop .choseBox{
+
+}
+
+.buyPop .choseBox .items{
+  padding: 0.3rem 0.6rem 0.3rem 0.3rem;
+  border-bottom: 1px solid #ececec;
+  padding-right:0.5rem;
+  background-position: 6.75rem center;
+  background-repeat: no-repeat;
+  background-size: 0.36rem 0.36rem;
+  background-image: url(../assets/distribution/bg10@2x.png)
+}
+
+.buyPop .choseBox .items.on{
+  background-image: url(../assets/distribution/bg09@2x.png)
+}
+
+.buyPop .choseBox .items h3{
+  font-size: 0.3rem;
+  color: #333;
+  font-weight: normal;
+  line-height: 0.32rem;
+  margin-bottom: 0.15rem;
+}
+
+.buyPop .choseBox .items h4{
+  font-size: 0.22rem;
+  color: #d0ad70;
+  font-weight: normal;
+  line-height: 0.4rem;
+}
+
+.buyPop .choseBox .items h4 span{
+  font-size:0.36rem;
+  font-weight: bold;
+}
+
+.buyPop .gobuy{
+  display: block;
+  width: 100%;
+  height: 1rem;
+  line-height: 1rem;
+  background-color: #d1b077;
+  font-size:0.32rem;
+  color: #fff;
+  border:none;
+}
+
+/*==================== popBuy开始 ===================*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

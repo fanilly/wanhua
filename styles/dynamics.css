@@ -1,0 +1,94 @@
+body {
+  background-color: rgb(247, 247, 247);
+}
+
+.list-item-wapper {
+  height: 2.4rem;
+  box-sizing: border-box;
+  padding: 0 .3rem;
+  background-color: #fff;
+  transition: background-color ease .4s;
+}
+
+.list-item-wapper:active {
+  background-color: #f7f7f7;
+}
+
+.list-item {
+  height: 2.4rem;
+  display: flex;
+  align-items: center;
+  padding: .35rem 0;
+  border-bottom: 1px solid #ededed;
+}
+
+.list-wapper .list-item-wapper:last-child .list-item {
+  border-bottom: 0;
+}
+
+.list-item .lside {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 1.7rem;
+  padding-right: .3rem;
+}
+
+.list-item .rside {
+  width: 2.28rem;
+  border-radius: .08rem;
+  height: 1.7rem;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.list-item .lside .title {
+  font-size: .3rem;
+  color: #1c1c20;
+  line-height: .44rem;
+  max-height: .88rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.list-item .lside .time {
+  font-size: .24rem;
+  color: #999;
+}
+
+.header {
+  padding: .6rem .3rem 0;
+  background-color: #fff;
+}
+
+.header .title {
+  font-size: .4rem;
+  line-height: .6rem;
+  font-weight: 600;
+}
+
+.header .time {
+  font-size: .26rem;
+  color: #999;
+  padding: .36rem 0 .6rem;
+  border-bottom: 1px solid #ededed;
+}
+
+.dynamics-content {
+  padding: .4rem .3rem;
+  font-size: 14px;
+  background:#fff;
+}
+.dynamics-content p{
+  padding: .2rem 0rem;
+}
+.dynamics-content img {
+  max-width: 100%!important;
+  padding: .1rem 0;
+}

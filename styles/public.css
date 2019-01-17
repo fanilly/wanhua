@@ -277,6 +277,10 @@ textarea {
   font-size: .32rem;
 }
 
+.weui-toast--text {
+  font-size: .3rem;
+}
+
 .weui-dialog__bd {
   font-size: .28rem;
 }

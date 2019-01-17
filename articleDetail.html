@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>文章详情</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <script src="./librarys/scripts/rem.js"></script>
+  <link rel="stylesheet" type="text/css" href="./librarys/styles/common.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./librarys/jqweui/lib/weui.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./librarys/jqweui/css/jquery-weui.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./styles/public.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./styles/style.css?v={:config('asset_version')}">
+  <link rel="stylesheet" type="text/css" href="./styles/animate.css">
+</head>
+
+<body>
+  <div class="customer-invitations-detail-page public-wbg" id="app">
+
+    <div class="customer-info">
+      <h2 class="public-line-title public-flex-center">
+        <span class="public-flex1">云想衣裳花想容 | 鲜花与燕拍摄 策划、拍摄、美食造型</span>
+        <img src="./assets/c23.png" id="more_btn" style="width: .4rem" alt="">
+      </h2>
+      <div class="public-list-type05">
+        <a class="item public-flex-center" style="padding:.1rem .3rem; background-color: transparent;">
+          <div class="lside public-bgimg" style="border-radius: 50%; width: .72rem;height: .72rem; background-image: url(./assets/bg.jpg)"></div>
+          <div class="center public-flex1">
+            <h3 class="title">郭德纲</h3>
+            <h6 class="remark" style="padding-top: 0">技术部<span style="padding-left: .2rem">2018-10-22 08:39:27</span></h6>
+          </div>
+          <div class="rside public-flex-center">
+            <img src="./assets/a04.png" alt="">
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="cremark">
+      <div class="content">
+        <p>
+          拍摄对象：创意燕窝
+          创意拍摄策划、拍摄、美食造型、精修后期：Mansion View Studio
+
+          客户的品牌调性是与鲜花有关，我们为每一款燕窝搭配一个对应的主题色的多款品种的鲜花。拍摄的当天半个摄影棚都是花，也是相当有趣。
+
+
+          Mansion View Studio 是一家专注于【主题定制 食物美学】的摄影工作室。
+          工作室目前 based in 广州，并在全国提供美食摄影、产品摄影服务。
+
+          <img src="./assets/bg.jpg" alt="">
+
+          创始人毕业于 Goldsmiths, University of London, 并获得 Master of Photography 学位。工作室成立于2016年，团队有丰富的美食拍摄经验和独特的个人风格。不断创作、不断试验、拒绝重复。以最独特、最有创造力的视觉语言，把想法变成现实。
+
+          合作品牌：
+          丽思卡尔顿酒店 ，文华东方酒店，洲际酒店，澳门葡京酒店，澳门新濠影汇，四季酒店，OLAY，网易，携程，澳门豆捞，禄鼎记，蜀九香，点都德，太二酸菜鱼，许个愿吧等。
+        </p>
+
+      </div>
+    </div>
+
+
+    <!--==============================
+    =            选择人员            =
+    ===============================-->
+
+    <div id="choose_push" class="weui-popup__container">
+      <div class="weui-popup__overlay"></div>
+      <div class="weui-popup__modal weui-popup__modal__fff">
+        <div class="public-chose-branch">
+          <div class="public-find"><input type="text" placeholder="搜索"></div>
+          <div class="public-chose-branch-content">
+            <div class="public-input-box-type04 public-flex-center public-bottom-line" @click="handleChooseAllPersons">
+              <div :class="{'public-toggle2':true,'public-toggle2-checked':chooseAllPersons}"></div>
+              <div class="public-flex1 txt">全选</div>
+            </div>
+            <div class="group" v-for="item,index in persons">
+              <div :class="{'public-input-box-type04':true,'public-flex-center':true,'public-bottom-line':true,active:item.chooseAll,more:item.more}" @click="handleChoosePersonDepartment(index)">
+                <div :class="{'public-toggle2':true,'public-toggle2-checked':item.chooseAll}"></div>
+                <div class="public-flex1 txt">{{item.name}}</div>
+                <div class="public-flex-center" @click.stop.prevent="hanldeShowMorePerson(index)">
+                  <div class="remark">{{item.users.length}}人</div>
+                  <img src="./assets/a04.png" class="arrow">
+                </div>
+              </div>
+              <div v-if="item.more" v-for="user,i in item.users" class="public-input-box-type04 public-flex-center public-bottom-line" @click="handleChoosePersonItem(index,i)">
+                <div :class="{'public-toggle2':true,'public-toggle2-checked':user.choose}"></div>
+                <div class="avatar public-bgimg" :style="'background-image: url('+user.avatar+')'"></div>
+                <div class="public-flex1 txt">{{user.nickname}}<span class="public-tags-blue" v-if="user.is_supervisor == 1">主管</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="confirm-btn-wapper">
+            <div class="footer-box">
+              <a class="line-btn btn reset close-popup">取消</a>
+              <a class="fill-btn btn confirm" @click="handleConfirmChoosePersons">确定</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--====  End of 选择人员  ====-->
+
+
+
+
+  </div>
+  <script src="./librarys/scripts/vue.js?v={:config('asset_version')}"></script>
+  <script src="./librarys/jqweui/lib/jquery-2.1.4.js?v={:config('asset_version')}"></script>
+  <script src="./librarys/jqweui/js/jquery-weui.min.js?v={:config('asset_version')}"></script>
+  <script src="./scripts/public.js?v={:config('asset_version')}"></script>
+  <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js?v={:config('asset_version')}"></script>
+  <script>
+  var APP = new Vue({
+    el: '#app',
+    data: {
+
+      /*=====================================
+      =            choose person            =
+      =====================================*/
+      persons: [],
+      chooseAllPersons: false,
+      choosedPerson: [],
+      /*=====  End of choose person  ======*/
+    },
+    methods: {
+
+      /*=====================================
+      =            choose person            =
+      =====================================*/
+
+      handleChoosePersonItem: function(parentIndex, index) {
+        var self = this;
+        this.persons[parentIndex].users[index].choose = !this.persons[parentIndex].users[index].choose;
+        var tempUsers = this.persons[parentIndex].users.filter(function(item, i) {
+          return !item.choose;
+        });
+        this.persons[parentIndex].chooseAll = tempUsers.length == 0 ? true : false;
+        var tempPersons = this.persons.filter(function(item, i) {
+          return !item.chooseAll;
+        });
+        this.chooseAllPersons = tempPersons.length == 0 ? true : false;
+      },
+
+      hanldeShowMorePerson: function(index) {
+        this.persons[index].more = !this.persons[index].more;
+      },
+
+      handleConfirmChoosePersons: function() {
+        var choosedPerson = [];
+        this.persons.forEach(function(item, index) {
+          choosedPerson = choosedPerson.concat(item.users.filter(function(ele, i) {
+            return ele.choose;
+          }))
+        });
+        this.choosedPerson = choosedPerson;
+        $.closePopup();
+      },
+
+      handleChoosePersonDepartment: function(index) {
+        var self = this;
+        this.persons[index].chooseAll = !this.persons[index].chooseAll;
+        this.persons[index].users = this.persons[index].users.map(function(item, i) {
+          item.choose = self.persons[index].chooseAll;
+          return item;
+        });
+        var tempPersons = this.persons.filter(function(item, i) {
+          return !item.chooseAll;
+        });
+        this.chooseAllPersons = tempPersons.length == 0 ? true : false;
+      },
+
+      handleChooseAllPersons: function() {
+        var self = this;
+        var persons = [];
+        this.chooseAllPersons = !this.chooseAllPersons;
+        this.persons.forEach(function(item, index) {
+          item.chooseAll = self.chooseAllPersons;
+          item.users = item.users.map(function(ele, i) {
+            ele.choose = self.chooseAllPersons;
+            return ele;
+          });
+          persons.push(item);
+        });
+        this.persons = persons;
+      },
+
+      getRoleUser: function() {
+        var self = this;
+        $.get('/journal/index/get_role_user', function(res) {
+          var persons = [];
+          res.data.forEach(function(item, index) {
+            item.chooseAll = false;
+            item.more = false;
+            item.users = item.users.map(function(ele, i) {
+              ele.choose = false;
+              return ele;
+            });
+            persons.push(item);
+          });
+          self.persons = persons;
+        })
+      },
+
+      /*=====  End of choose person  ======*/
+
+    },
+
+    mounted: function() {
+      $('#more_btn').on('click', function() {
+        var $self = $(this);
+        $.actions({
+          actions: [{
+            text: "编辑",
+            className: 'public-color-success',
+            onClick: function() {
+              location.href = './noticePublish.html';
+            }
+          }, {
+            text: "删除",
+            className: 'public-color-success',
+            onClick: function() {
+              $.confirm('确认删除？', function() {
+                $.showLoading('删除中');
+                $.post('#', function(res) {
+                  $.hideLoading();
+                  $.toast(res.msg, 'text');
+                  if (res.code == 1) {
+                    location.reload()
+                  }
+                })
+              });
+            }
+          }, {
+            text: "推送",
+            className: 'public-color-success',
+            onClick: function() {
+              $("#choose_push").popup();
+            }
+          }]
+        });
+      });
+    }
+  });
+
+  </script>
+</body>
+
+</html>

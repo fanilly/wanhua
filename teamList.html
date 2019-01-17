@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>客户列表</title>
+  <title>我的团队</title>
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <script src="./librarys/scripts/rem.js"></script>
   <link rel="stylesheet" type="text/css" href="./librarys/styles/common.css?v={:config('asset_version')}">
@@ -15,10 +15,10 @@
 </head>
 
 <body>
-  <div class="customer-list-page public-wbg">
+  <div class="customer-list-page public-wbg" id="app" v-cloak>
 
     <div class="public-toolbar-type01 public-bottom-line">
-      <a href="#" id="js_search">
+      <a href="#" id="js_search" @click.stop.prevent="handleSearch">
         <img src="./assets/search.png" style="width: .3rem; position: relative; top: .04rem">
         <span>搜索</span>
       </a>
@@ -33,18 +33,19 @@
     ===========================-->
 
     <div class="customer-list-list">
-      <a href="#" class="item public-flex-center">
-        <div class="lside public-flex-center-center public-bgimg" style="background-image: url(./assets/icon64@2x.png);">
+      <div style="height: 3rem;"></div>
+      <a href="#" class="item public-flex-center" v-for="item,index in list">
+        <div class="lside public-flex-center-center public-bgimg" :style="'background-image: url('+item.avatar+')'">
         </div>
         <div class="center public-flex1 public-bottom-line">
           <h2 class="public-flex-center">
-            <div class="public-flex1">刘星辰</div>
-            <span>ID： 5165498</span>
+            <div class="public-flex1">{{item.nickname}}</div>
+            <span>ID： {{item.id}}</span>
           </h2>
-          <p>直接分享</p>
+          <p>{{item.type}}</p>
           <div class="public-flex-center bottom">
-            <div class="public-flex1">注册时间 2018.10.09</div>
-            <div><span class="public-tags-blue">高级会员</span></div>
+            <div class="public-flex1">注册时间 {{item.create_time}}</div>
+            <div><span class="public-tags-blue">{{item.level_name}}</span></div>
           </div>
         </div>
       </a>
@@ -53,7 +54,7 @@
     <!--====  End of list  ====-->
 
     <!--==============================
-    =            排序弹窗            =
+    =             筛选            =
     ===============================-->
 
     <div class="public-sort-mask"></div>
@@ -61,20 +62,32 @@
       <div class="content-box">
         <div class="public-choose-box-type01 public-flex-center public-bottom-line">
           <span class="public-flex1">全部</span>
-          <input type="radio" name="sort" class="public-toggle1" checked name="">
+          <input type="radio" name="sort" data-val="0" class="public-toggle1" checked name="">
         </div>
         <div class="public-choose-box-type01 public-flex-center public-bottom-line">
-          <span class="public-flex1">直接分享</span>
-          <input type="radio" name="sort" class="public-toggle1" name="">
+          <span class="public-flex1">直接推荐黄金（121人）</span>
+          <input type="radio" name="sort" data-val="1" class="public-toggle1" name="">
         </div>
         <div class="public-choose-box-type01 public-flex-center public-bottom-line">
-          <span class="public-flex1">间接分享</span>
-          <input type="radio" name="sort" class="public-toggle1" name="">
+          <span class="public-flex1">间接推荐黄金（51人）</span>
+          <input type="radio" name="sort" data-val="2" class="public-toggle1" name="">
+        </div>
+        <div class="public-choose-box-type01 public-flex-center public-bottom-line">
+          <span class="public-flex1">直接推荐白银（62人）</span>
+          <input type="radio" name="sort" data-val="3" class="public-toggle1" name="">
+        </div>
+        <div class="public-choose-box-type01 public-flex-center public-bottom-line">
+          <span class="public-flex1">间接推荐白银（55人）</span>
+          <input type="radio" name="sort" data-val="4" class="public-toggle1" name="">
+        </div>
+        <div class="public-choose-box-type01 public-flex-center public-bottom-line">
+          <span class="public-flex1">普通用户（17人）</span>
+          <input type="radio" name="sort" data-val="5" class="public-toggle1" name="">
         </div>
       </div>
       <div class="footer-box">
         <a class="line-btn btn reset">重置</a>
-        <a class="fill-btn btn confirm">确定</a>
+        <a class="fill-btn btn confirm" @click="handleToggle">确定</a>
       </div>
     </div>
 
@@ -87,44 +100,58 @@
     <script src="./librarys/jqweui/js/jquery-weui.min.js?v={:config('asset_version')}"></script>
     <script src="./scripts/public.js?v={:config('asset_version')}"></script>
     <script type="text/javascript">
-      $('#js_search').on('click', function(e) {
-        e.stopPropagation();
-        e.preventDefault();
-        $.modal({
-          title: '搜索团队成员',
-          text: '<div class="public-custom-modal-content"><input type="text" placeholder="请输入用户名或ID" /></div>',
-          autoClose: false,
-          buttons: [{
-            text: '取消',
-            onClick: function() {
-              $.closeModal();
-            }
-          }, {
-            text: '确定',
-            onClick: function() {
-              var searchKeyWord = $('.public-custom-modal-content input').val();
-              if (searchKeyWord != '' && searchKeyWord.trim() != '') {
-                $.showLoading('验证中');
-                $.post('#',{
-                  searchKeyWord: searchKeyWord,
-                },function(res){
-                  $.hideLoading();
-                  if(res.code == 1){
-                    $.toast('旧密码验证通过，开始设置新密码','text');
-                    setTimeout(function(){
-                      location.href = './modifyPassword.html';
-                    },1200);
-                  }else{
-                    $.toast(res.msg,'text');
-                  }
-                });
-              } else {
-                $.toast('搜索关键词不能为空','text');
+
+      var app = new Vue({
+        el: '#app',
+        data: {
+          list: [{"id":3828426,"nickname":"芳","avatar":"http:\/\/wanhua.zzebz.cn\/static\/client\/assets\/d08.png","create_time":"2019-01-09 11:17","type":"间接推荐","level_name":"黄金会员"},{"id":5241490,"nickname":"佳","avatar":"http:\/\/wanhua.zzebz.cn\/static\/client\/assets\/d08.png","create_time":"2019-01-09 10:46","type":"间接推荐","level_name":"黄金会员"},{"id":7718052,"nickname":"王阳","avatar":"http:\/\/wanhua.zzebz.cn\/static\/client\/assets\/d08.png","create_time":"2019-01-11 15:11","type":"直接推荐","level_name":"黄金会员"},{"id":78586737,"nickname":"方平","avatar":"http:\/\/wanhua.zzebz.cn\/static\/client\/assets\/d08.png","create_time":"2019-01-11 15:07","type":"间接推荐","level_name":"黄金会员"},{"id":177304,"nickname":"李海洋","avatar":"http:\/\/wanhua.zzebz.cn\/static\/client\/assets\/d08.png","create_time":"2019-01-11 14:25","type":"间接推荐","level_name":"黄金会员"},{"id":18811061,"nickname":"李建业","avatar":"http:\/\/wanhua.zzebz.cn\/static\/client\/assets\/d08.png","create_time":"2019-01-02 16:59","type":"直接推荐","level_name":"白银会员"},{"id":31147871,"nickname":"紫妍","avatar":"\/uploads\/images\/20190109\/5745a731234ea2ab9f47eec56e075424.png","create_time":"2019-01-09 10:44","type":"间接推荐","level_name":"黄金会员"},{"id":33724137,"nickname":"阿海","avatar":"http:\/\/wanhua.zzebz.cn\/static\/client\/assets\/d08.png","create_time":"2019-01-06 15:05","type":"直接推荐","level_name":"黄金会员"},{"id":37214705,"nickname":"马岩","avatar":"http:\/\/wanhua.zzebz.cn\/static\/client\/assets\/d08.png","create_time":"2019-01-02 17:57","type":"间接推荐","level_name":"普通用户"},{"id":37428859,"nickname":"陈迪青","avatar":"http:\/\/wanhua.zzebz.cn\/static\/client\/assets\/d08.png","create_time":"2019-01-02 18:14","type":"直接推荐","level_name":"普通用户"},{"id":38970832,"nickname":"王永新","avatar":"http:\/\/wanhua.zzebz.cn\/static\/client\/assets\/d08.png","create_time":"2019-01-09 11:50","type":"间接推荐","level_name":"黄金会员"},{"id":40208188,"nickname":"张娟娟","avatar":"http:\/\/wanhua.zzebz.cn\/static\/client\/assets\/d08.png","create_time":"2019-01-02 15:18","type":"直接推荐","level_name":"普通用户"},{"id":40469014,"nickname":"徐晓丽","avatar":"\/uploads\/images\/20190109\/4ed5f6af30225790136092ef187e73fd.jpg","create_time":"2019-01-09 10:41","type":"间接推荐","level_name":"黄金会员"},{"id":41599805,"nickname":"王小波","avatar":"http:\/\/wanhua.zzebz.cn\/static\/client\/assets\/d08.png","create_time":"2019-01-05 13:16","type":"直接推荐","level_name":"黄金会员"},{"id":42465855,"nickname":"张秦岭","avatar":"http:\/\/wanhua.zzebz.cn\/static\/client\/assets\/d08.png","create_time":"2019-01-09 11:01","type":"间接推荐","level_name":"普通用户"},{"id":48582494,"nickname":"乔玉芳","avatar":"http:\/\/wanhua.zzebz.cn\/static\/client\/assets\/d08.png","create_time":"2019-01-06 09:28","type":"间接推荐","level_name":"普通用户"},{"id":50541907,"nickname":"崔彦仓","avatar":"http:\/\/wanhua.zzebz.cn\/static\/client\/assets\/d08.png","create_time":"2019-01-09 11:00","type":"间接推荐","level_name":"黄金会员"},{"id":51376772,"nickname":"罗文欢","avatar":"http:\/\/wanhua.zzebz.cn\/static\/client\/assets\/d08.png","create_time":"2019-01-09 10:50","type":"间接推荐","level_name":"黄金会员"},{"id":52430155,"nickname":"菅晓楠","avatar":"http:\/\/wanhua.zzebz.cn\/static\/client\/assets\/d08.png","create_time":"2019-01-05 15:35","type":"直接推荐","level_name":"白银会员"},{"id":53302518,"nickname":"刘莹","avatar":"http:\/\/wanhua.zzebz.cn\/static\/client\/assets\/d08.png","create_time":"2019-01-02 15:30","type":"直接推荐","level_name":"普通用户"},{"id":54118871,"nickname":"王孟豪","avatar":"http:\/\/wanhua.zzebz.cn\/static\/client\/assets\/d08.png","create_time":"2019-01-02 17:54","type":"直接推荐","level_name":"普通用户"},{"id":56187691,"nickname":"刘含笑","avatar":"http:\/\/wanhua.zzebz.cn\/static\/client\/assets\/d08.png","create_time":"2019-01-08 10:03","type":"间接推荐","level_name":"黄金会员"},{"id":61809594,"nickname":"王伟","avatar":"http:\/\/wanhua.zzebz.cn\/static\/client\/assets\/d08.png","create_time":"2019-01-09 10:52","type":"间接推荐","level_name":"黄金会员"},{"id":65362389,"nickname":"岳林海","avatar":"http:\/\/wanhua.zzebz.cn\/static\/client\/assets\/d08.png","create_time":"2019-01-09 10:54","type":"间接推荐","level_name":"黄金会员"},{"id":72931958,"nickname":"朱彦亮","avatar":"http:\/\/wanhua.zzebz.cn\/static\/client\/assets\/d08.png","create_time":"2019-01-03 20:20","type":"直接推荐","level_name":"普通用户"},{"id":77246840,"nickname":"周晓丽","avatar":"http:\/\/wanhua.zzebz.cn\/static\/client\/assets\/d08.png","create_time":"2019-01-09 13:38","type":"间接推荐","level_name":"黄金会员"},{"id":81266337,"nickname":"王钟","avatar":"http:\/\/wanhua.zzebz.cn\/static\/client\/assets\/d08.png","create_time":"2019-01-09 10:39","type":"间接推荐","level_name":"黄金会员"},{"id":81842820,"nickname":"唯唯","avatar":"http:\/\/wanhua.zzebz.cn\/static\/client\/assets\/d08.png","create_time":"2019-01-09 11:03","type":"间接推荐","level_name":"普通用户"},{"id":82242642,"nickname":"路岭","avatar":"http:\/\/wanhua.zzebz.cn\/static\/client\/assets\/d08.png","create_time":"2019-01-09 10:50","type":"间接推荐","level_name":"黄金会员"},{"id":86377993,"nickname":"胡耀武","avatar":"http:\/\/wanhua.zzebz.cn\/static\/client\/assets\/d08.png","create_time":"2019-01-09 10:45","type":"间接推荐","level_name":"黄金会员"},{"id":86765371,"nickname":"抱走林可爱","avatar":"http:\/\/wanhua.zzebz.cn\/static\/client\/assets\/d08.png","create_time":"2019-01-05 14:46","type":"间接推荐","level_name":"普通用户"},{"id":86857827,"nickname":"郭兰霞","avatar":"http:\/\/wanhua.zzebz.cn\/static\/client\/assets\/d08.png","create_time":"2019-01-07 21:40","type":"直接推荐","level_name":"白银会员"},{"id":90490502,"nickname":"武燕娜","avatar":"http:\/\/wanhua.zzebz.cn\/static\/client\/assets\/d08.png","create_time":"2019-01-02 16:30","type":"直接推荐","level_name":"普通用户"},{"id":90694664,"nickname":"杨利华","avatar":"http:\/\/wanhua.zzebz.cn\/static\/client\/assets\/d08.png","create_time":"2019-01-09 11:18","type":"间接推荐","level_name":"黄金会员"},{"id":91454627,"nickname":"郭兰霞","avatar":"http:\/\/wanhua.zzebz.cn\/static\/client\/assets\/d08.png","create_time":"2019-01-07 21:50","type":"直接推荐","level_name":"普通用户"},{"id":94410667,"nickname":"李小红","avatar":"http:\/\/wanhua.zzebz.cn\/static\/client\/assets\/d08.png","create_time":"2019-01-09 10:42","type":"间接推荐","level_name":"黄金会员"},{"id":94579365,"nickname":"刘婷","avatar":"http:\/\/wanhua.zzebz.cn\/static\/client\/assets\/d08.png","create_time":"2019-01-09 12:05","type":"间接推荐","level_name":"普通用户"},{"id":95301128,"nickname":"郭兰霞","avatar":"http:\/\/wanhua.zzebz.cn\/static\/client\/assets\/d08.png","create_time":"2019-01-07 21:48","type":"直接推荐","level_name":"普通用户"},{"id":99673081,"nickname":"刘振红","avatar":"http:\/\/wanhua.zzebz.cn\/static\/client\/assets\/d08.png","create_time":"2019-01-02 17:51","type":"直接推荐","level_name":"黄金会员"}]
+        },
+        mounted: function(){
+          // this.getLists(0)
+        },
+        methods: {
+          getLists: function(type,searchKeyWord){
+            var self = this;
+            $.post('#',{
+              type: type,
+              search: searchKeyWord || '',
+            },function(res){
+              if(searchKeyWord) $.toast(res.msg,'text');
+              if(res.code == 1){
+                self.list = res.data;
               }
-            }
-          }]
-        });
-      });
+            })
+          },
+          handleToggle: function(){
+            this.getLists($('.public-sort-content').find('input:checked').data('val'))
+          },
+          handleSearch: function(){
+            var self = this;
+            $.modal({
+              title: '搜索团队成员',
+              text: '<div class="public-custom-modal-content"><input type="text" placeholder="请输入用户名或ID" /></div>',
+              autoClose: false,
+              buttons: [{
+                text: '取消',
+                onClick: function() {
+                  $.closeModal();
+                }
+              }, {
+                text: '确定',
+                onClick: function() {
+                  var searchKeyWord = $('.public-custom-modal-content input').val();
+                  if (searchKeyWord != '' && searchKeyWord.trim() != '') {
+                    self.getLists($('.public-sort-content').find('input:checked').data('val'),searchKeyWord);
+                    $.closeModal();
+                  } else {
+                    $.toast('搜索关键词不能为空','text');
+                  }
+                }
+              }]
+            });
+          }
+        }
+      })
     </script>
 </body>
 

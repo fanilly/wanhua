@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>申请开店</title>
+  <title>注册账号</title>
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <script src="./librarys/scripts/rem.js"></script>
   <link rel="stylesheet" type="text/css" href="./librarys/styles/common.css?v={:config('asset_version')}">
@@ -20,7 +20,7 @@
       <div class="input-group">
         <div class="public-input-box-type03 public-bottom-line public-flex-center" style="padding-right: 0;">
           <label class="lside public-flex-center"><span class="name">推荐人ID</span><span class="require">*</span></label>
-          <input class="input public-flex1" type="text" name="" placeholder="请输入">
+          <input class="input public-flex1" v-model="formData.recommenderId" type="text" name="" placeholder="请输入">
         </div>
       </div>
       <div class="input-group">
@@ -73,8 +73,9 @@
             realname: '', //真实姓名
             mobile: '', //手机号
             vercode: '', //验证码
-            password1: '',
-            password2: '',
+            password1: '', //密码
+            password2: '', //确认密码
+            recommenderId: '', //推荐人ID
           }
         },
 
@@ -132,6 +133,10 @@
           handleConfirm: function(){
             var self = this;
             if(!this.allowConfirm) return false;
+            if(this.formData.password1 != this.formData.password2){
+              $.toast('两次输入密码不一样','text');
+              return false;
+            }
             $.showLoading('提交中');
 
             var formData = this.formData;

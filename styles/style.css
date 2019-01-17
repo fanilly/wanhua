@@ -3154,3 +3154,38 @@ input {
 .my-vip-page .card-info .buy h2 {
   line-height: 2;
 }
+
+
+/*===================================================
+=                     如何赚佣                      =
+====================================================*/
+
+.brokerage-page {
+  background: url(../assets/img/pic_01.jpg) no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed;
+  overflow-y: scroll;
+  padding: .3rem;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.brokerage-page .title1 {
+  font-size: .7rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.brokerage-page .title3 {
+  font-size: .36rem;
+  font-weight: bold;
+  color: #fff;
+  padding: .3rem 0 .5rem;
+}
+
+.brokerage-page p {
+  font-size: .32rem;
+  color: #fff;
+  line-height: 1.8;
+}

@@ -26,7 +26,7 @@
         <img src="./assets/icon01.png" class="clear-input" alt="">
       </div>
       <p style="padding-top: .3rem; color: #fff; font-size: .28rem;">还没有账号？<a style="color: #00aeff; " href="./register.html">立即注册</a></p>
-      <button :class="{'login-btn': true, active: allowLogin}">登陆</button>
+      <button :class="{'login-btn': true, active: allowLogin}" @click="handleLogin">登陆</button>
       <a href="./forget.html" class="forget">忘记密码</a>
     </div>
     <div class="remark">@COPYRIGHT 2018 万花文化传媒</div>
@@ -47,6 +47,23 @@
         computed:{
           allowLogin: function(){
             return this.phone != '' && this.password != '';
+          }
+        },
+        methods: {
+          //用户登录
+          handleLogin: function(){
+            if(this.allowLogin){
+              var self = this;
+              $.post('#',{
+                phone: this.phone,
+                password: this.password
+              },function(res){
+                $.toast(res.msg,'text');
+                if(res.code == 1){
+                  location.href = './index.html';
+                }
+              });
+            }
           }
         }
       })
